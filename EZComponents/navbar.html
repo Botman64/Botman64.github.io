@@ -1,406 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EZComponents Navbar - Discord-Style Navigation Components</title>
+  <meta name="description"
+    content="Create horizontal and vertical navigation bars with customizable styles, icons, and event handling. Perfect for modern web applications.">
+  <meta name="keywords"
+    content="discord navbar, navigation bar, UI components, web components, JavaScript, horizontal navbar, vertical navbar">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://botman64.github.io/EZComponents/navbar.html">
+  <meta property="og:title" content="EZComponents Navbar - Discord-Style Navigation Components">
+  <meta property="og:description"
+    content="Create horizontal and vertical navigation bars with customizable styles, icons, and event handling.">
+  <meta property="og:image" content="https://botman64.github.io/images/navbar-preview.svg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://botman64.github.io/EZComponents/navbar.html">
+  <meta property="twitter:title" content="EZComponents Navbar - Discord-Style Navigation Components">
+  <meta property="twitter:description"
+    content="Create horizontal and vertical navigation bars with customizable styles, icons, and event handling.">
+  <meta property="twitter:image" content="https://botman64.github.io/images/navbar-preview.svg">
+
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EZComponents Navbar - Discord-Style Navigation Components</title>
-    <meta name="description" content="Create horizontal and vertical navigation bars with customizable styles, icons, and event handling. Perfect for modern web applications.">
-    <meta name="keywords" content="discord navbar, navigation bar, UI components, web components, JavaScript, horizontal navbar, vertical navbar">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://botman64.github.io/EZComponents/navbar.html">
-    <meta property="og:title" content="EZComponents Navbar - Discord-Style Navigation Components">
-    <meta property="og:description" content="Create horizontal and vertical navigation bars with customizable styles, icons, and event handling.">
-    <meta property="og:image" content="https://botman64.github.io/images/navbar-preview.svg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://botman64.github.io/EZComponents/navbar.html">
-    <meta property="twitter:title" content="EZComponents Navbar - Discord-Style Navigation Components">
-    <meta property="twitter:description" content="Create horizontal and vertical navigation bars with customizable styles, icons, and event handling.">
-    <meta property="twitter:image" content="https://botman64.github.io/images/navbar-preview.svg">
-
-    <link rel="stylesheet" href="style-shared.css">
+    <title>EZNavbar Demo</title>
+    <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/navbar.js"></script>
     <style>
-        body {
-            font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #2c2f33;
-            color: #ffffff;
-        }
+      body {
+        font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #2c2f33;
+        color: white;
+      }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+      .container {
+        margin: 20px;
+        /* padding: 20px; */
+        background-color: #36393f;
+        border-radius: 5px;
+      }
 
-        h1, h2 {
-            text-align: center;
-        }
+      .content {
+        margin-left: 220px;
+        max-width: 800px;
+        padding: 20px;
+        /*             text-align: center; */
+      }
 
-        .demo-section {
-            margin: 40px 0;
-            border-top: 1px solid #444;
-            padding-top: 20px;
-        }
+      .demo-section {
+        margin: 40px 0;
+        border-top: 1px solid #444;
+        padding-top: 20px;
+      }
 
-        .demo-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-top: 30px;
-        }
+      .demo-section.active {
+        display: block;
+      }
 
-        .demo-panel {
-            background-color: #36393f;
-            border-radius: 5px;
-            padding: 0;
-            box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
-            flex: 1;
-            min-width: 300px;
-            overflow: hidden;
-        }
-
-        .demo-content {
-            padding: 20px;
-        }
-
-        .demo-title {
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 18px;
-            font-weight: 600;
-            color: #ffffff;
-        }
-
-        .code-block {
-            background: #23272a;
-            border-radius: 4px;
-            padding: 15px;
-            font-family: monospace;
-            overflow-x: auto;
-            color: #b9bbbe;
-            margin-top: 20px;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        .code-block pre {
-            margin: 0;
-            white-space: pre-wrap;
-        }
-
-        /* Getting Started Section */
-        .getting-started {
-            margin: 20px 0 40px;
-            background-color: #36393f;
-            padding: 20px;
-            border-radius: 5px;
-        }
-
-        .getting-started h3 {
-            margin-top: 0;
-            color: #ffffff;
-        }
-
-        .getting-started p {
-            margin-bottom: 15px;
-        }
-
-        /* Installation Section */
-        .installation {
-            margin-top: 15px;
-        }
-
-        .installation-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #ffffff;
-        }
-
-        /* Home Button */
-        .home-button {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .home-button svg {
-            width: 24px;
-            height: 24px;
-            fill: #ffffff;
-        }
-
-        /* Navbar Demo Specific Styles */
-        #vertical-navbar {
-            width: 220px;
-            height: 400px;
-            box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
-        }
-
-        #horizontal-navbar {
-            width: 100%;
-            box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
-        }
-
-        .feature-list {
-            margin-top: 20px;
-            margin-left: 20px;
-        }
-
-        .feature-list li {
-            margin-bottom: 8px;
-        }
-
-        .btn-row {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .demo-btn {
-            background-color: #5865f2;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            padding: 8px 16px;
-            font-size: 14px;
-            cursor: pointer;
-            flex: 1;
-        }
-
-        .demo-btn:hover {
-            background-color: #4752c4;
-        }
-
-        .demo-btn.secondary {
-            background-color: #4f545c;
-        }
-
-        .demo-btn.secondary:hover {
-            background-color: #686d73;
-        }
+      .code-block {
+        background: #23272a;
+        border-radius: 4px;
+        padding: 15px;
+        font-family: monospace;
+        overflow-x: auto;
+        color: #b9bbbe;
+        margin-top: 20px;
+      }
     </style>
-</head>
+  </head>
+
 <body>
-    <a href="../" class="home-button">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-        </svg>
-        Home
-    </a>
+  <div id="vertical-navbar"></div>
+  <div id="horizontal-navbar"></div>
 
-    <div class="container">
-        <h1>EZNavbar Component</h1>
+  <div class="content">
+    <h1>EZNavbar Demo</h1>
+    <p>Click on the navigation tabs to explore different sections.</p>
 
-        <div class="getting-started">
-            <h3>Getting Started</h3>
-            <p>Follow these simple steps to add EZComponents navbars to your project:</p>
-
-            <div class="installation">
-                <div class="installation-title">Add the script to your HTML:</div>
-                <div class="code-block">
-<pre><!-- Include the EZNavbar component -->
-&lt;script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/navbar.js"&gt;&lt;/script&gt;</pre>
-                </div>
-
-                <div class="installation-title">Create your first navbar:</div>
-                <div class="code-block">
-<pre>// Create a horizontal navbar
-const navbar = new EZNavbar(
-    document.getElementById('navbar-container'),
-    {
+    <div class="demo-section">
+      <h2>Features Demonstration</h2>
+      <p>This demo showcases the following features:</p>
+      <ul>
+        <li>Clickable site icon linked to the home page</li>
+        <li>Support for Unicode, Font Awesome, favicons, or image URLs for item icons</li>
+        <li>Dynamic styling using <code>setProperty</code> and <code>getProperty</code></li>
+      </ul>
+      <div class="code-block">
+        <pre>// Initialize the EZNavbar
+    const navbar = new EZNavbar(document.getElementById('horizontal-navbar'), {
         orientation: 'horizontal',
-        siteIcon: '🌐',
+        siteIcon: 'https://example.com/logo.png', // Site icon as an image URL
+        siteIconUrl: '/', // Link to the home page
+        visible: true,
         items: [
             { text: 'Home', icon: '🏠', url: '/' },
-            { text: 'Products', icon: '🛒', url: '/products' },
-            { text: 'About', icon: 'ℹ️', url: '/about' }
-        ],
-        onItemClick: (item) => {
-            console.log(`Clicked on ${item.text}`);
-        }
-    }
-);
+            { text: 'About', icon: 'fa-info-circle', url: '/about' }, // Font Awesome icon
+            { text: 'Contact', icon: 'https://example.com/contact-icon.png', url: '/contact' } // Image URL
+        ]
+    });
+    navbar.render();
 
-// Render the navbar
-navbar.render();</pre>
-                </div>
-            </div>
-        </div>
+    // Dynamically update styles
+    navbar.setProperty('backgroundColor', '#1a1a1a', 'root');
+    navbar.setProperty('color', '#ffcc00', 'itemsContainer');
 
-        <div class="demo-section">
-            <h2>Navbar Examples</h2>
-            
-            <div class="demo-container">
-                <div class="demo-panel">
-                    <div id="horizontal-navbar"></div>
-                    <div class="demo-content">
-                        <h3 class="demo-title">Horizontal Navbar</h3>
-                        <p>Perfect for top navigation on websites and applications.</p>
-                        <div class="btn-row">
-                            <button id="custom-horizontal" class="demo-btn">Customize Style</button>
-                            <button id="reset-horizontal" class="demo-btn secondary">Reset</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="demo-panel" style="min-height: 400px; display: flex;">
-                    <div id="vertical-navbar"></div>
-                    <div class="demo-content" style="flex: 1;">
-                        <h3 class="demo-title">Vertical Navbar</h3>
-                        <p>Ideal for sidebar navigation and mobile menus.</p>
-                        <div class="btn-row">
-                            <button id="custom-vertical" class="demo-btn">Customize Style</button>
-                            <button id="reset-vertical" class="demo-btn secondary">Reset</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="demo-section">
-            <h2>Features</h2>
-            <p>The EZNavbar component comes with a variety of features:</p>
-            
-            <ul class="feature-list">
-                <li>Support for both horizontal and vertical orientations</li>
-                <li>Clickable site icon that can be linked to the home page</li>
-                <li>Support for emoji icons, Font Awesome icons, and image URLs for item icons</li>
-                <li>Active state to highlight the current page/section</li>
-                <li>Event handlers for clicks and hover events</li>
-                <li>Dynamic styling using methods like <code>setProperty</code> and <code>getProperty</code></li>
-                <li>Show/hide functionality with the <code>setVisible</code> method</li>
-            </ul>
-
-            <div class="code-block">
-<pre>// Available configuration options
-const navbarOptions = {
-    orientation: 'horizontal', // or 'vertical'
-    siteIcon: '🌐', // Can be emoji, Font Awesome icon, or image URL
-    siteIconUrl: '/', // Optional link for the site icon
-    visible: true, // Whether the navbar is initially visible
-    items: [
-        { 
-            text: 'Home',
-            icon: '🏠', // Item icon (emoji, Font Awesome, or URL)
-            url: '/',   // URL to navigate to (optional)
-            active: true, // Whether this item is currently active
-            onClick: (e, item) => {} // Click handler (optional)
-        },
-        // More items...
-    ],
-    onItemClick: (item, index) => {}, // Global handler for all items
-    onItemHover: (isHovering, item, index) => {} // Hover handler
-};
-
-// API Methods
-navbar.setProperty('backgroundColor', '#1a1a1a', 'root'); // Set a CSS property
-navbar.getProperty('backgroundColor', 'root'); // Get a CSS property
-navbar.setVisible(true); // Show or hide the navbar
-navbar.addItem({ text: 'New Item', icon: '🆕' }); // Add a new navigation item
-navbar.removeItem(2); // Remove an item by index
-navbar.updateItem(1, { text: 'Updated Item' }); // Update an existing item
-</pre>
-            </div>
-        </div>
+    // Retrieve a style property
+    const bgColor = navbar.getProperty('backgroundColor', 'root');
+    console.log('Navbar background color:', bgColor);
+    </pre>
+      </div>
     </div>
+  </div>
 
-    <!-- Load components -->
-    <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/navbar.js"></script>
+  <script>
+    const demoSections = {
+      home: document.getElementById('home-section'),
+    };
 
-    <script>
-        // Initialize navbars
-        let horizontalNavbar, verticalNavbar;
+    function activateSection(sectionKey) {
+      if (sectionKey === 'home') window.location.href = 'https://botman64.github.io/';
+    }
 
-        function initNavbars() {
-            // Horizontal navbar
-            horizontalNavbar = new EZNavbar(
-                document.getElementById('horizontal-navbar'),
-                {
-                    orientation: 'horizontal',
-                    siteIcon: '🌐',
-                    items: [
-                        { text: 'Home', icon: '🏠', active: true },
-                        { text: 'Products', icon: '🛒' },
-                        { text: 'Features', icon: '✨' },
-                        { text: 'Pricing', icon: '💰' },
-                        { text: 'About', icon: 'ℹ️' },
-                        { text: 'Contact', icon: '📞' }
-                    ],
-                    onItemClick: (item) => {
-                        // Update active state
-                        horizontalNavbar.getItems().forEach(navItem => {
-                            navItem.active = (navItem.text === item.text);
-                        });
-                        horizontalNavbar.render();
-                    }
-                }
-            );
-            horizontalNavbar.render();
-
-            // Vertical navbar
-            verticalNavbar = new EZNavbar(
-                document.getElementById('vertical-navbar'),
-                {
-                    orientation: 'vertical',
-                    siteIcon: '🌐',
-                    items: [
-                        { text: 'Dashboard', icon: '📊', active: true },
-                        { text: 'Profile', icon: '👤' },
-                        { text: 'Messages', icon: '💬' },
-                        { text: 'Settings', icon: '⚙️' },
-                        { text: 'Help', icon: '❓' },
-                        { text: 'Logout', icon: '🚪' }
-                    ],
-                    onItemClick: (item) => {
-                        // Update active state
-                        verticalNavbar.getItems().forEach(navItem => {
-                            navItem.active = (navItem.text === item.text);
-                        });
-                        verticalNavbar.render();
-                    }
-                }
-            );
-            verticalNavbar.render();
-
-            // Set up customization buttons
-            document.getElementById('custom-horizontal').addEventListener('click', () => {
-                horizontalNavbar.setProperty('backgroundColor', '#1a1a1a', 'root');
-                horizontalNavbar.setProperty('color', '#ffffff', 'itemsContainer');
-                horizontalNavbar.setProperty('borderBottom', '2px solid #5865f2', 'root');
-            });
-
-            document.getElementById('reset-horizontal').addEventListener('click', () => {
-                // Re-create the horizontal navbar
-                document.getElementById('horizontal-navbar').innerHTML = '';
-                initNavbars();
-            });
-
-            document.getElementById('custom-vertical').addEventListener('click', () => {
-                verticalNavbar.setProperty('backgroundColor', '#23272a', 'root');
-                verticalNavbar.setProperty('color', '#ffffff', 'itemsContainer');
-                verticalNavbar.setProperty('borderRight', '2px solid #5865f2', 'root');
-            });
-
-            document.getElementById('reset-vertical').addEventListener('click', () => {
-                // Re-create the vertical navbar
-                document.getElementById('vertical-navbar').innerHTML = '';
-                initNavbars();
-            });
+    const verticalNavbar = new EZNavbar(document.getElementById('vertical-navbar'), {
+      orientation: 'vertical',
+      siteIcon: '🌐',
+      visible: false,
+      items: [
+        { text: 'Home', icon: '🏠', onClick: () => activateSection('home') },
+        {
+          text: 'Horizontal', icon: '➡️', onClick: () => {
+            activateSection('horizontal');
+            horizontalNavbar.setVisible(true);
+            verticalNavbar.setVisible(false);
+          }
+        },
+        {
+          text: 'Vertical', icon: '⬇️', active: true, onClick: () => {
+            activateSection('vertical');
+            verticalNavbar.setVisible(true);
+            horizontalNavbar.setVisible(false);
+          }
         }
+      ]
+    });
+    verticalNavbar.render();
 
-        // Initialize on DOM load
-        document.addEventListener('DOMContentLoaded', initNavbars);
-    </script>
+    const horizontalNavbar = new EZNavbar(document.getElementById('horizontal-navbar'), {
+      orientation: 'horizontal',
+      siteIcon: 'https://example.com/logo.png', // Site icon as an image URL
+      siteIconUrl: '/', // Link to the home page
+      visible: true,
+      items: [
+        { text: 'Home', icon: '🏠', onClick: () => activateSection('home') },
+        {
+          text: 'Horizontal', active: true, icon: 'fa-solid fa-info-circle', onClick: () => {
+            activateSection('horizontal');
+            horizontalNavbar.setVisible(true);
+            verticalNavbar.setVisible(false);
+          }
+        },
+        {
+          text: 'Vertical', icon: '⬇️', onClick: () => {
+            activateSection('vertical');
+            verticalNavbar.setVisible(true);
+            horizontalNavbar.setVisible(false);
+          }
+        }
+      ]
+    });
+    horizontalNavbar.render();
+
+    // Dynamically update styles
+    // horizontalNavbar.setProperty('backgroundColor', '#000000', 'root');
+    // horizontalNavbar.setProperty('color', '#ffcc00', 'itemsContainer');
+
+    // Retrieve a style property
+    // const bgColor = horizontalNavbar.getProperty('backgroundColor', 'root');
+    // console.log('Navbar background color:', bgColor);
+  </script>
 </body>
+
 </html>

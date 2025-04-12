@@ -1,700 +1,709 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EZ Component Style Editor Demo</title>
-    <link rel="stylesheet" href="style-shared.css">
-    <style>
-        body {
-            font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #2c2f33;
-            color: #ffffff;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EZ Component Style Editor Demo</title>
+  <link rel="stylesheet" href="style-shared.css">
+  <style>
+    body {
+      font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #2c2f33;
+      color: #ffffff;
+    }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
 
-        h1, h2 {
-            text-align: center;
-        }
+    h1,
+    h2 {
+      text-align: center;
+    }
 
-        .demo-section {
-            margin: 40px 0;
-            border-top: 1px solid #444;
-            padding-top: 20px;
-        }
+    .demo-section {
+      margin: 40px 0;
+      border-top: 1px solid #444;
+      padding-top: 20px;
+    }
 
-        .demo-flex {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
+    .demo-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
 
-        .component-preview {
-            flex: 1;
-            min-width: 300px;
-            background-color: #36393f;
-            border-radius: 8px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 200px;
-        }
+    .component-preview {
+      flex: 1;
+      min-width: 300px;
+      background-color: #36393f;
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+    }
 
-        .style-editor {
-            flex: 1;
-            min-width: 300px;
-            background-color: #36393f;
-            border-radius: 8px;
-            padding: 20px;
-        }
+    .style-editor {
+      flex: 1;
+      min-width: 300px;
+      background-color: #36393f;
+      border-radius: 8px;
+      padding: 20px;
+    }
 
-        .editor-title {
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
+    .editor-title {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
 
-        .control-group {
-            margin-bottom: 15px;
-        }
+    .control-group {
+      margin-bottom: 15px;
+    }
 
-        .control-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 14px;
-            color: #b9bbbe;
-        }
+    .control-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+      color: #b9bbbe;
+    }
 
-        .control-group select,
-        .control-group input {
-            width: 100%;
-            background-color: #2f3136;
-            border: 1px solid #202225;
-            border-radius: 4px;
-            color: #dcddde;
-            padding: 8px;
-            font-size: 14px;
-        }
-        .control-group input {
-            width: calc(100% - 16px) !important;
-        }
+    .control-group select,
+    .control-group input {
+      width: 100%;
+      background-color: #2f3136;
+      border: 1px solid #202225;
+      border-radius: 4px;
+      color: #dcddde;
+      padding: 8px;
+      font-size: 14px;
+    }
 
-        .btn-row {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
+    .control-group input {
+      width: calc(100% - 16px) !important;
+    }
 
-        .ez-button {
-            background-color: #5865f2;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 8px 16px;
-            font-size: 14px;
-            cursor: pointer;
-            flex: 1;
-        }
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
 
-        .ez-button:hover {
-            background-color: #4752c4;
-        }
+    .ez-button {
+      background-color: #5865f2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      flex: 1;
+    }
 
-        .ez-button.secondary {
-            background-color: #4f545c;
-        }
+    .ez-button:hover {
+      background-color: #4752c4;
+    }
 
-        .ez-button.secondary:hover {
-            background-color: #686d73;
-        }
+    .ez-button.secondary {
+      background-color: #4f545c;
+    }
 
-        .code-preview {
-            margin-top: 15px;
-            background-color: #2f3136;
-            border-radius: 4px;
-            padding: 10px;
-        }
+    .ez-button.secondary:hover {
+      background-color: #686d73;
+    }
 
-        .code-preview h4 {
-            margin-top: 0;
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: #b9bbbe;
-        }
+    .code-preview {
+      margin-top: 15px;
+      background-color: #2f3136;
+      border-radius: 4px;
+      padding: 10px;
+    }
 
-        #code-output {
-            margin: 0;
-            font-family: monospace;
-            color: #dcddde;
-            white-space: pre-wrap;
-            font-size: 12px;
-        }
+    .code-preview h4 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #b9bbbe;
+    }
 
-        .tabs {
-            display: flex;
-            border-bottom: 1px solid #202225;
-            margin-bottom: 15px;
-        }
+    #code-output {
+      margin: 0;
+      font-family: monospace;
+      color: #dcddde;
+      white-space: pre-wrap;
+      font-size: 12px;
+    }
 
-        .tab {
-            padding: 8px 16px;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-        }
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #202225;
+      margin-bottom: 15px;
+    }
 
-        .tab.active {
-            border-bottom-color: #5865f2;
-            color: #ffffff;
-        }
+    .tab {
+      padding: 8px 16px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
 
-        .tab-content {
-            display: none;
-        }
+    .tab.active {
+      border-bottom-color: #5865f2;
+      color: #ffffff;
+    }
 
-        .tab-content.active {
-            display: block;
-        }
-    </style>
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .code-preview {
+      overflow-x: scroll !important;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>EZ Component Style Editor</h1>
+  <div class="container">
+    <h1>EZ Component Style Editor</h1>
 
-        <div class="tabs">
-            <div class="tab active" data-tab="select-menu">Select Menu</div>
-            <div class="tab" data-tab="form">Form</div>
-            <div class="tab" data-tab="button">Button</div>
-        </div>
-
-        <div class="tab-content active" id="select-menu-tab">
-            <div class="demo-section">
-                <h2>EZSelectMenu Style Editor</h2>
-
-                <div class="demo-flex">
-                    <div class="component-preview">
-                        <div id="select-preview"></div>
-                    </div>
-
-                    <div class="style-editor">
-                        <h3 class="editor-title">Edit Styles</h3>
-
-                        <div class="control-group">
-                            <label>Target Element:</label>
-                            <select id="select-target-element">
-                                <!-- Options will be populated by JavaScript -->
-                            </select>
-                        </div>
-
-                        <div class="control-group">
-                            <label>CSS Property:</label>
-                            <select id="select-css-property">
-                                <option value="backgroundColor">Background Color</option>
-                                <option value="color">Text Color</option>
-                                <option value="borderRadius">Border Radius</option>
-                                <option value="borderColor">Border Color</option>
-                                <option value="borderWidth">Border Width</option>
-                                <option value="padding">Padding</option>
-                                <option value="fontSize">Font Size</option>
-                                <option value="fontWeight">Font Weight</option>
-                                <option value="boxShadow">Box Shadow</option>
-                                <option value="width">Width</option>
-                                <option value="height">Height</option>
-                            </select>
-                        </div>
-
-                        <div class="control-group">
-                            <label>Value:</label>
-                            <input type="text" id="select-css-value" placeholder="e.g. #ff0000, 10px, bold">
-                        </div>
-
-                        <div class="btn-row">
-                            <button id="apply-select-style" class="ez-button">Apply Style</button>
-                            <button id="reset-select-style" class="ez-button secondary">Reset</button>
-                        </div>
-
-                        <div class="code-preview">
-                            <h4>Code:</h4>
-                            <pre id="select-code-output">// Apply a style to see code here</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-content" id="form-tab">
-            <div class="demo-section">
-                <h2>EZForm Style Editor</h2>
-
-                <div class="demo-flex">
-                    <div class="component-preview">
-                        <div id="form-preview"></div>
-                    </div>
-
-                    <div class="style-editor">
-                        <h3 class="editor-title">Edit Styles</h3>
-
-                        <div class="control-group">
-                            <label>Target Element:</label>
-                            <select id="form-target-element">
-                                <!-- Options will be populated by JavaScript -->
-                            </select>
-                        </div>
-
-                        <div class="control-group" id="form-field-container" style="display: none;">
-                            <label>Form Field:</label>
-                            <select id="form-field-select">
-                                <!-- Options will be populated by JavaScript -->
-                            </select>
-                        </div>
-
-                        <div class="control-group">
-                            <label>CSS Property:</label>
-                            <select id="form-css-property">
-                                <option value="backgroundColor">Background Color</option>
-                                <option value="color">Text Color</option>
-                                <option value="borderRadius">Border Radius</option>
-                                <option value="borderColor">Border Color</option>
-                                <option value="borderWidth">Border Width</option>
-                                <option value="padding">Padding</option>
-                                <option value="fontSize">Font Size</option>
-                                <option value="fontWeight">Font Weight</option>
-                                <option value="boxShadow">Box Shadow</option>
-                                <option value="width">Width</option>
-                                <option value="maxWidth">Max Width</option>
-                            </select>
-                        </div>
-
-                        <div class="control-group">
-                            <label>Value:</label>
-                            <input type="text" id="form-css-value" placeholder="e.g. #ff0000, 10px, bold">
-                        </div>
-
-                        <div class="btn-row">
-                            <button id="apply-form-style" class="ez-button">Apply Style</button>
-                            <button id="reset-form-style" class="ez-button secondary">Reset</button>
-                        </div>
-
-                        <div class="code-preview">
-                            <h4>Code:</h4>
-                            <pre id="form-code-output">// Apply a style to see code here</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-content" id="button-tab">
-            <div class="demo-section">
-                <h2>EZButton Style Editor</h2>
-
-                <div class="demo-flex">
-                    <div class="component-preview">
-                        <div id="button-preview"></div>
-                    </div>
-
-                    <div class="style-editor">
-                        <h3 class="editor-title">Edit Styles</h3>
-
-                        <div class="control-group">
-                            <label>Target Element:</label>
-                            <select id="button-target-element">
-                                <!-- Options will be populated by JavaScript -->
-                            </select>
-                        </div>
-
-                        <div class="control-group">
-                            <label>CSS Property:</label>
-                            <select id="button-css-property">
-                                <option value="backgroundColor">Background Color</option>
-                                <option value="color">Text Color</option>
-                                <option value="borderRadius">Border Radius</option>
-                                <option value="borderColor">Border Color</option>
-                                <option value="borderWidth">Border Width</option>
-                                <option value="borderStyle">Border Style</option>
-                                <option value="padding">Padding</option>
-                                <option value="fontSize">Font Size</option>
-                                <option value="fontWeight">Font Weight</option>
-                                <option value="boxShadow">Box Shadow</option>
-                                <option value="transform">Transform</option>
-                            </select>
-                        </div>
-
-                        <div class="control-group">
-                            <label>Value:</label>
-                            <input type="text" id="button-css-value" placeholder="e.g. #ff0000, 10px, bold">
-                        </div>
-
-                        <div class="btn-row">
-                            <button id="apply-button-style" class="ez-button">Apply Style</button>
-                            <button id="reset-button-style" class="ez-button secondary">Reset</button>
-                        </div>
-
-                        <div class="code-preview">
-                            <h4>Code:</h4>
-                            <pre id="button-code-output">// Apply a style to see code here</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="tabs">
+      <div class="tab active" data-tab="select-menu">Select Menu</div>
+      <div class="tab" data-tab="form">Form</div>
+      <div class="tab" data-tab="button">Button</div>
     </div>
 
-    <!-- Load components -->
-    <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/button.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/selectMenu.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/form.js"></script>
+    <div class="tab-content active" id="select-menu-tab">
+      <div class="demo-section">
+        <h2>EZSelectMenu Style Editor</h2>
 
-    <script>
-        // Global variables
-        let selectMenu, demoForm, demoButton;
+        <div class="demo-flex">
+          <div class="component-preview">
+            <div id="select-preview"></div>
+          </div>
 
-        // Initialize components
-        function initComponents() {
-            // Initialize Select Menu
-            selectMenu = new EZSelectMenu(
-                document.getElementById('select-preview'),
-                {
-                    placeholder: 'Choose an option',
-                    options: [
-                        {
-                            value: 'option1',
-                            label: 'Option One',
-                            description: 'This is the first option',
-                            emoji: '1️⃣'
-                        },
-                        {
-                            value: 'option2',
-                            label: 'Option Two',
-                            description: 'This is the second option',
-                            emoji: '2️⃣'
-                        },
-                        {
-                            value: 'option3',
-                            label: 'Option Three',
-                            description: 'This is the third option',
-                            emoji: '3️⃣'
-                        }
-                    ]
-                }
-            );
+          <div class="style-editor">
+            <h3 class="editor-title">Edit Styles</h3>
 
-            selectMenu.render();
+            <div class="control-group">
+              <label>Target Element:</label>
+              <select id="select-target-element">
+                <!-- Options will be populated by JavaScript -->
+              </select>
+            </div>
 
-            // Populate select menu element options
-            const selectElements = selectMenu.getElementsList();
-            const selectTargetElement = document.getElementById('select-target-element');
+            <div class="control-group">
+              <label>CSS Property:</label>
+              <select id="select-css-property">
+                <option value="backgroundColor">Background Color</option>
+                <option value="color">Text Color</option>
+                <option value="borderRadius">Border Radius</option>
+                <option value="borderColor">Border Color</option>
+                <option value="borderWidth">Border Width</option>
+                <option value="padding">Padding</option>
+                <option value="fontSize">Font Size</option>
+                <option value="fontWeight">Font Weight</option>
+                <option value="boxShadow">Box Shadow</option>
+                <option value="width">Width</option>
+                <option value="height">Height</option>
+              </select>
+            </div>
 
-            for (const key in selectElements) {
-                const option = document.createElement('option');
-                option.value = key;
-                option.textContent = `${key} - ${selectElements[key]}`;
-                selectTargetElement.appendChild(option);
+            <div class="control-group">
+              <label>Value:</label>
+              <input type="text" id="select-css-value" placeholder="e.g. #ff0000, 10px, bold">
+            </div>
+
+            <div class="btn-row">
+              <button id="apply-select-style" class="ez-button">Apply Style</button>
+              <button id="reset-select-style" class="ez-button secondary">Reset</button>
+            </div>
+
+            <div class="code-preview">
+              <h4>Code:</h4>
+              <pre id="select-code-output">// Apply a style to see code here</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="form-tab">
+      <div class="demo-section">
+        <h2>EZForm Style Editor</h2>
+
+        <div class="demo-flex">
+          <div class="component-preview">
+            <div id="form-preview"></div>
+          </div>
+
+          <div class="style-editor">
+            <h3 class="editor-title">Edit Styles</h3>
+
+            <div class="control-group">
+              <label>Target Element:</label>
+              <select id="form-target-element">
+                <!-- Options will be populated by JavaScript -->
+              </select>
+            </div>
+
+            <div class="control-group" id="form-field-container" style="display: none;">
+              <label>Form Field:</label>
+              <select id="form-field-select">
+                <!-- Options will be populated by JavaScript -->
+              </select>
+            </div>
+
+            <div class="control-group">
+              <label>CSS Property:</label>
+              <select id="form-css-property">
+                <option value="backgroundColor">Background Color</option>
+                <option value="color">Text Color</option>
+                <option value="borderRadius">Border Radius</option>
+                <option value="borderColor">Border Color</option>
+                <option value="borderWidth">Border Width</option>
+                <option value="padding">Padding</option>
+                <option value="fontSize">Font Size</option>
+                <option value="fontWeight">Font Weight</option>
+                <option value="boxShadow">Box Shadow</option>
+                <option value="width">Width</option>
+                <option value="maxWidth">Max Width</option>
+              </select>
+            </div>
+
+            <div class="control-group">
+              <label>Value:</label>
+              <input type="text" id="form-css-value" placeholder="e.g. #ff0000, 10px, bold">
+            </div>
+
+            <div class="btn-row">
+              <button id="apply-form-style" class="ez-button">Apply Style</button>
+              <button id="reset-form-style" class="ez-button secondary">Reset</button>
+            </div>
+
+            <div class="code-preview">
+              <h4>Code:</h4>
+              <pre id="form-code-output">// Apply a style to see code here</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="button-tab">
+      <div class="demo-section">
+        <h2>EZButton Style Editor</h2>
+
+        <div class="demo-flex">
+          <div class="component-preview">
+            <div id="button-preview"></div>
+          </div>
+
+          <div class="style-editor">
+            <h3 class="editor-title">Edit Styles</h3>
+
+            <div class="control-group">
+              <label>Target Element:</label>
+              <select id="button-target-element">
+                <!-- Options will be populated by JavaScript -->
+              </select>
+            </div>
+
+            <div class="control-group">
+              <label>CSS Property:</label>
+              <select id="button-css-property">
+                <option value="backgroundColor">Background Color</option>
+                <option value="color">Text Color</option>
+                <option value="borderRadius">Border Radius</option>
+                <option value="borderColor">Border Color</option>
+                <option value="borderWidth">Border Width</option>
+                <option value="borderStyle">Border Style</option>
+                <option value="padding">Padding</option>
+                <option value="fontSize">Font Size</option>
+                <option value="fontWeight">Font Weight</option>
+                <option value="boxShadow">Box Shadow</option>
+                <option value="transform">Transform</option>
+              </select>
+            </div>
+
+            <div class="control-group">
+              <label>Value:</label>
+              <input type="text" id="button-css-value" placeholder="e.g. #ff0000, 10px, bold">
+            </div>
+
+            <div class="btn-row">
+              <button id="apply-button-style" class="ez-button">Apply Style</button>
+              <button id="reset-button-style" class="ez-button secondary">Reset</button>
+            </div>
+
+            <div class="code-preview">
+              <h4>Code:</h4>
+              <pre id="button-code-output">// Apply a style to see code here</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load components -->
+  <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/button.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/selectMenu.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/form.js"></script>
+
+  <script>
+    // Global variables
+    let selectMenu, demoForm, demoButton;
+
+    // Initialize components
+    function initComponents() {
+      // Initialize Select Menu
+      selectMenu = new EZSelectMenu(
+        document.getElementById('select-preview'),
+        {
+          placeholder: 'Choose an option',
+          options: [
+            {
+              value: 'option1',
+              label: 'Option One',
+              description: 'This is the first option',
+              emoji: '1️⃣'
+            },
+            {
+              value: 'option2',
+              label: 'Option Two',
+              description: 'This is the second option',
+              emoji: '2️⃣'
+            },
+            {
+              value: 'option3',
+              label: 'Option Three',
+              description: 'This is the third option',
+              emoji: '3️⃣'
             }
-
-            // Initialize Form
-            demoForm = new EZForm(
-                document.getElementById('form-preview'),
-                {
-                    title: 'Sample Form',
-                    description: 'This is a sample form for style editing.',
-                    fields: [
-                        {
-                            id: 'name',
-                            type: 'text',
-                            label: 'Name',
-                            placeholder: 'Enter your name'
-                        },
-                        {
-                            id: 'email',
-                            type: 'email',
-                            label: 'Email',
-                            placeholder: 'Enter your email'
-                        },
-                        {
-                            id: 'category',
-                            type: 'select',
-                            label: 'Category',
-                            options: [
-                                { value: 'personal', label: 'Personal' },
-                                { value: 'business', label: 'Business' },
-                                { value: 'other', label: 'Other' }
-                            ]
-                        }
-                    ],
-                    submitButton: {
-                        text: 'Submit'
-                    }
-                }
-            );
-
-            demoForm.render();
-
-            // Populate form element options
-            const formElements = demoForm.getElementsList();
-            const formTargetElement = document.getElementById('form-target-element');
-
-            // Add special "field" option
-            formTargetElement.innerHTML = '';
-            const fieldOption = document.createElement('option');
-            fieldOption.value = 'field';
-            fieldOption.textContent = 'Individual Form Field';
-            formTargetElement.appendChild(fieldOption);
-
-            for (const key in formElements) {
-                const option = document.createElement('option');
-                option.value = key;
-                option.textContent = `${key} - ${formElements[key]}`;
-                formTargetElement.appendChild(option);
-            }
-
-            // Populate form fields dropdown
-            const formFieldSelect = document.getElementById('form-field-select');
-            formFieldSelect.innerHTML = '';
-
-            demoForm.options.fields.forEach(field => {
-                const option = document.createElement('option');
-                option.value = field.id;
-                option.textContent = `${field.id} - ${field.label || field.type}`;
-                formFieldSelect.appendChild(option);
-            });
-
-            // Initialize Button
-            demoButton = new EZButton(
-                document.getElementById('button-preview'),
-                {
-                    text: 'Style Me',
-                    style: 'primary',
-                    emoji: '🎨'
-                }
-            );
-
-            demoButton.render();
-
-            // Populate button element options
-            const buttonElements = demoButton.getElementsList();
-            const buttonTargetElement = document.getElementById('button-target-element');
-
-            buttonTargetElement.innerHTML = '';
-            for (const key in buttonElements) {
-                const option = document.createElement('option');
-                option.value = key;
-                option.textContent = `${key} - ${buttonElements[key]}`;
-                buttonTargetElement.appendChild(option);
-            }
+          ]
         }
+      );
 
-        // Set up event listeners
-        function setupEventListeners() {
-            // Tab switching
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Remove active class from all tabs and content
-                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      selectMenu.render();
 
-                    // Add active class to clicked tab and corresponding content
-                    tab.classList.add('active');
-                    const tabContent = document.getElementById(`${tab.getAttribute('data-tab')}-tab`);
-                    tabContent.classList.add('active');
-                });
-            });
+      // Populate select menu element options
+      const selectElements = selectMenu.getElementsList();
+      const selectTargetElement = document.getElementById('select-target-element');
 
-            // Select Menu Style Application
-            document.getElementById('apply-select-style').addEventListener('click', () => {
-                const element = document.getElementById('select-target-element').value;
-                const property = document.getElementById('select-css-property').value;
-                const value = document.getElementById('select-css-value').value;
+      for (const key in selectElements) {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = `${key} - ${selectElements[key]}`;
+        selectTargetElement.appendChild(option);
+      }
 
-                if (value) {
-                    selectMenu.setStyleProperty(property, value, element);
-
-                    // Update code preview
-                    document.getElementById('select-code-output').textContent =
-                        `selectMenu.setStyleProperty('${property}', '${value}', '${element}');`;
-                }
-            });
-
-            // Reset Select Menu
-            document.getElementById('reset-select-style').addEventListener('click', () => {
-                // Re-render the select menu
-                document.getElementById('select-preview').innerHTML = '';
-                selectMenu = null;
-
-                selectMenu = new EZSelectMenu(
-                    document.getElementById('select-preview'),
-                    {
-                        placeholder: 'Choose an option',
-                        options: [
-                            {
-                                value: 'option1',
-                                label: 'Option One',
-                                description: 'This is the first option',
-                                emoji: '1️⃣'
-                            },
-                            {
-                                value: 'option2',
-                                label: 'Option Two',
-                                description: 'This is the second option',
-                                emoji: '2️⃣'
-                            },
-                            {
-                                value: 'option3',
-                                label: 'Option Three',
-                                description: 'This is the third option',
-                                emoji: '3️⃣'
-                            }
-                        ]
-                    }
-                );
-
-                selectMenu.render();
-
-                document.getElementById('select-code-output').textContent = '// Style has been reset';
-            });
-
-            // Show/hide form field selector based on target element
-            document.getElementById('form-target-element').addEventListener('change', (e) => {
-                const fieldContainer = document.getElementById('form-field-container');
-                fieldContainer.style.display = e.target.value === 'field' ? 'block' : 'none';
-            });
-
-            // Form Style Application
-            document.getElementById('apply-form-style').addEventListener('click', () => {
-                const element = document.getElementById('form-target-element').value;
-                const property = document.getElementById('form-css-property').value;
-                const value = document.getElementById('form-css-value').value;
-
-                if (!value) return;
-
-                let codeOutput = '';
-
-                if (element === 'field') {
-                    // Apply style to a specific field
-                    const fieldId = document.getElementById('form-field-select').value;
-                    demoForm.setFieldStyle(fieldId, property, value);
-                    codeOutput = `demoForm.setFieldStyle('${fieldId}', '${property}', '${value}');`;
-                } else {
-                    // Apply style to a form element
-                    demoForm.setStyleProperty(property, value, element);
-                    codeOutput = `demoForm.setStyleProperty('${property}', '${value}', '${element}');`;
-                }
-
-                // Update code preview
-                document.getElementById('form-code-output').textContent = codeOutput;
-            });
-
-            // Reset Form
-            document.getElementById('reset-form-style').addEventListener('click', () => {
-                // Re-render the form
-                document.getElementById('form-preview').innerHTML = '';
-                demoForm = null;
-
-                demoForm = new EZForm(
-                    document.getElementById('form-preview'),
-                    {
-                        title: 'Sample Form',
-                        description: 'This is a sample form for style editing.',
-                        fields: [
-                            {
-                                id: 'name',
-                                type: 'text',
-                                label: 'Name',
-                                placeholder: 'Enter your name'
-                            },
-                            {
-                                id: 'email',
-                                type: 'email',
-                                label: 'Email',
-                                placeholder: 'Enter your email'
-                            },
-                            {
-                                id: 'category',
-                                type: 'select',
-                                label: 'Category',
-                                options: [
-                                    { value: 'personal', label: 'Personal' },
-                                    { value: 'business', label: 'Business' },
-                                    { value: 'other', label: 'Other' }
-                                ]
-                            }
-                        ],
-                        submitButton: {
-                            text: 'Submit'
-                        }
-                    }
-                );
-
-                demoForm.render();
-
-                // Populate form fields dropdown again
-                const formFieldSelect = document.getElementById('form-field-select');
-                formFieldSelect.innerHTML = '';
-
-                demoForm.options.fields.forEach(field => {
-                    const option = document.createElement('option');
-                    option.value = field.id;
-                    option.textContent = `${field.id} - ${field.label || field.type}`;
-                    formFieldSelect.appendChild(option);
-                });
-
-                document.getElementById('form-code-output').textContent = '// Style has been reset';
-            });
-
-            // Button Style Application
-            document.getElementById('apply-button-style').addEventListener('click', () => {
-                const element = document.getElementById('button-target-element').value;
-                const property = document.getElementById('button-css-property').value;
-                const value = document.getElementById('button-css-value').value;
-
-                if (value) {
-                    demoButton.setStyleProperty(property, value, element);
-
-                    // Update code preview
-                    document.getElementById('button-code-output').textContent =
-                        `button.setStyleProperty('${property}', '${value}', '${element}');`;
-                }
-            });
-
-            // Reset Button
-            document.getElementById('reset-button-style').addEventListener('click', () => {
-                // Re-render the button
-                document.getElementById('button-preview').innerHTML = '';
-                demoButton = null;
-
-                demoButton = new EZButton(
-                    document.getElementById('button-preview'),
-                    {
-                        text: 'Style Me',
-                        style: 'primary',
-                        emoji: '🎨'
-                    }
-                );
-
-                demoButton.render();
-
-                document.getElementById('button-code-output').textContent = '// Style has been reset';
-            });
+      // Initialize Form
+      demoForm = new EZForm(
+        document.getElementById('form-preview'),
+        {
+          title: 'Sample Form',
+          description: 'This is a sample form for style editing.',
+          fields: [
+            {
+              id: 'name',
+              type: 'text',
+              label: 'Name',
+              placeholder: 'Enter your name'
+            },
+            {
+              id: 'email',
+              type: 'email',
+              label: 'Email',
+              placeholder: 'Enter your email'
+            },
+            {
+              id: 'category',
+              type: 'select',
+              label: 'Category',
+              options: [
+                { value: 'personal', label: 'Personal' },
+                { value: 'business', label: 'Business' },
+                { value: 'other', label: 'Other' }
+              ]
+            }
+          ],
+          submitButton: {
+            text: 'Submit'
+          }
         }
+      );
 
-        // Initialize on DOM load
-        document.addEventListener('DOMContentLoaded', () => {
-            initComponents();
-            setupEventListeners();
+      demoForm.render();
 
-            // Open the dropdown for the select menu demo to show styling options
-            setTimeout(() => {
-                selectMenu.open();
-            }, 500);
+      // Populate form element options
+      const formElements = demoForm.getElementsList();
+      const formTargetElement = document.getElementById('form-target-element');
+
+      // Add special "field" option
+      formTargetElement.innerHTML = '';
+      const fieldOption = document.createElement('option');
+      fieldOption.value = 'field';
+      fieldOption.textContent = 'Individual Form Field';
+      formTargetElement.appendChild(fieldOption);
+
+      for (const key in formElements) {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = `${key} - ${formElements[key]}`;
+        formTargetElement.appendChild(option);
+      }
+
+      // Populate form fields dropdown
+      const formFieldSelect = document.getElementById('form-field-select');
+      formFieldSelect.innerHTML = '';
+
+      demoForm.options.fields.forEach(field => {
+        const option = document.createElement('option');
+        option.value = field.id;
+        option.textContent = `${field.id} - ${field.label || field.type}`;
+        formFieldSelect.appendChild(option);
+      });
+
+      // Initialize Button
+      demoButton = new EZButton(
+        document.getElementById('button-preview'),
+        {
+          text: 'Style Me',
+          style: 'primary',
+          emoji: '🎨'
+        }
+      );
+
+      demoButton.render();
+
+      // Populate button element options
+      const buttonElements = demoButton.getElementsList();
+      const buttonTargetElement = document.getElementById('button-target-element');
+
+      buttonTargetElement.innerHTML = '';
+      for (const key in buttonElements) {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = `${key} - ${buttonElements[key]}`;
+        buttonTargetElement.appendChild(option);
+      }
+    }
+
+    // Set up event listeners
+    function setupEventListeners() {
+      // Tab switching
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remove active class from all tabs and content
+          document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+          document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+          // Add active class to clicked tab and corresponding content
+          tab.classList.add('active');
+          const tabContent = document.getElementById(`${tab.getAttribute('data-tab')}-tab`);
+          tabContent.classList.add('active');
         });
-    </script>
+      });
+
+      // Select Menu Style Application
+      document.getElementById('apply-select-style').addEventListener('click', () => {
+        const element = document.getElementById('select-target-element').value;
+        const property = document.getElementById('select-css-property').value;
+        const value = document.getElementById('select-css-value').value;
+
+        if (value) {
+          selectMenu.setStyleProperty(property, value, element);
+
+          // Update code preview
+          document.getElementById('select-code-output').textContent =
+            `selectMenu.setStyleProperty('${property}', '${value}', '${element}');`;
+        }
+      });
+
+      // Reset Select Menu
+      document.getElementById('reset-select-style').addEventListener('click', () => {
+        // Re-render the select menu
+        document.getElementById('select-preview').innerHTML = '';
+        selectMenu = null;
+
+        selectMenu = new EZSelectMenu(
+          document.getElementById('select-preview'),
+          {
+            placeholder: 'Choose an option',
+            options: [
+              {
+                value: 'option1',
+                label: 'Option One',
+                description: 'This is the first option',
+                emoji: '1️⃣'
+              },
+              {
+                value: 'option2',
+                label: 'Option Two',
+                description: 'This is the second option',
+                emoji: '2️⃣'
+              },
+              {
+                value: 'option3',
+                label: 'Option Three',
+                description: 'This is the third option',
+                emoji: '3️⃣'
+              }
+            ]
+          }
+        );
+
+        selectMenu.render();
+
+        document.getElementById('select-code-output').textContent = '// Style has been reset';
+      });
+
+      // Show/hide form field selector based on target element
+      document.getElementById('form-target-element').addEventListener('change', (e) => {
+        const fieldContainer = document.getElementById('form-field-container');
+        fieldContainer.style.display = e.target.value === 'field' ? 'block' : 'none';
+      });
+
+      // Form Style Application
+      document.getElementById('apply-form-style').addEventListener('click', () => {
+        const element = document.getElementById('form-target-element').value;
+        const property = document.getElementById('form-css-property').value;
+        const value = document.getElementById('form-css-value').value;
+
+        if (!value) return;
+
+        let codeOutput = '';
+
+        if (element === 'field') {
+          // Apply style to a specific field
+          const fieldId = document.getElementById('form-field-select').value;
+          demoForm.setFieldStyle(fieldId, property, value);
+          codeOutput = `demoForm.setFieldStyle('${fieldId}', '${property}', '${value}');`;
+        } else {
+          // Apply style to a form element
+          demoForm.setStyleProperty(property, value, element);
+          codeOutput = `demoForm.setStyleProperty('${property}', '${value}', '${element}');`;
+        }
+
+        // Update code preview
+        document.getElementById('form-code-output').textContent = codeOutput;
+      });
+
+      // Reset Form
+      document.getElementById('reset-form-style').addEventListener('click', () => {
+        // Re-render the form
+        document.getElementById('form-preview').innerHTML = '';
+        demoForm = null;
+
+        demoForm = new EZForm(
+          document.getElementById('form-preview'),
+          {
+            title: 'Sample Form',
+            description: 'This is a sample form for style editing.',
+            fields: [
+              {
+                id: 'name',
+                type: 'text',
+                label: 'Name',
+                placeholder: 'Enter your name'
+              },
+              {
+                id: 'email',
+                type: 'email',
+                label: 'Email',
+                placeholder: 'Enter your email'
+              },
+              {
+                id: 'category',
+                type: 'select',
+                label: 'Category',
+                options: [
+                  { value: 'personal', label: 'Personal' },
+                  { value: 'business', label: 'Business' },
+                  { value: 'other', label: 'Other' }
+                ]
+              }
+            ],
+            submitButton: {
+              text: 'Submit'
+            }
+          }
+        );
+
+        demoForm.render();
+
+        // Populate form fields dropdown again
+        const formFieldSelect = document.getElementById('form-field-select');
+        formFieldSelect.innerHTML = '';
+
+        demoForm.options.fields.forEach(field => {
+          const option = document.createElement('option');
+          option.value = field.id;
+          option.textContent = `${field.id} - ${field.label || field.type}`;
+          formFieldSelect.appendChild(option);
+        });
+
+        document.getElementById('form-code-output').textContent = '// Style has been reset';
+      });
+
+      // Button Style Application
+      document.getElementById('apply-button-style').addEventListener('click', () => {
+        const element = document.getElementById('button-target-element').value;
+        const property = document.getElementById('button-css-property').value;
+        const value = document.getElementById('button-css-value').value;
+
+        if (value) {
+          demoButton.setStyleProperty(property, value, element);
+
+          // Update code preview
+          document.getElementById('button-code-output').textContent =
+            `button.setStyleProperty('${property}', '${value}', '${element}');`;
+        }
+      });
+
+      // Reset Button
+      document.getElementById('reset-button-style').addEventListener('click', () => {
+        // Re-render the button
+        document.getElementById('button-preview').innerHTML = '';
+        demoButton = null;
+
+        demoButton = new EZButton(
+          document.getElementById('button-preview'),
+          {
+            text: 'Style Me',
+            style: 'primary',
+            emoji: '🎨'
+          }
+        );
+
+        demoButton.render();
+
+        document.getElementById('button-code-output').textContent = '// Style has been reset';
+      });
+    }
+
+    // Initialize on DOM load
+    document.addEventListener('DOMContentLoaded', () => {
+      initComponents();
+      setupEventListeners();
+
+      // Open the dropdown for the select menu demo to show styling options
+      setTimeout(() => {
+        selectMenu.open();
+      }, 500);
+    });
+  </script>
 </body>
+
 </html>

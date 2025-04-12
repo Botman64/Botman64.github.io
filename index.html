@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EZ Components - Botman64</title>
+    <title>Botman's GitHub Pages</title>
     <style>
         body {
             font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -35,6 +35,36 @@
             font-size: 1.2rem;
         }
 
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #23272a;
+            padding: 0 20px;
+            overflow-x: auto;
+            border-bottom: 1px solid #36393f;
+        }
+
+        .nav-tab {
+            padding: 15px 25px;
+            color: #b9bbbe;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+        }
+
+        .nav-tab:hover {
+            color: #ffffff;
+            background-color: #2c2f33;
+        }
+
+        .nav-tab.active {
+            color: #ffffff;
+            border-bottom: 3px solid #5865F2;
+        }
+
         main {
             flex: 1;
             padding: 40px 20px;
@@ -44,6 +74,55 @@
             box-sizing: border-box;
         }
 
+        /* Welcome Section */
+        .welcome-section {
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .welcome-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.5rem;
+            color: #b9bbbe;
+            margin-bottom: 40px;
+        }
+
+        .welcome-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #dcddde;
+            margin-bottom: 40px;
+        }
+
+        /* Content Section */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .section-title {
+            margin-bottom: 30px;
+            color: #ffffff;
+            font-size: 2rem;
+        }
+
+        .section-description {
+            margin-bottom: 30px;
+            color: #dcddde;
+            line-height: 1.5;
+        }
+
+        /* Component Grid */
         .component-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -74,6 +153,15 @@
 
         .card-header.embed {
             background-color: #ED4245;
+        }
+
+        .card-header.projects {
+            background-color: #57F287;
+        }
+
+        .card-header.tutorials {
+            background-color: #FEE75C;
+            color: #23272a;
         }
 
         .card-body {
@@ -107,6 +195,7 @@
             text-align: center;
             font-size: 0.9rem;
             color: #b9bbbe;
+            margin-top: auto;
         }
 
         .footer-link {
@@ -121,42 +210,216 @@
 </head>
 <body>
     <header>
-        <h1>EZ Components</h1>
-        <div class="subtitle">Simple, customizable web components for your Discord-inspired UIs</div>
+        <h1>Botman's GitHub Pages</h1>
+        <div class="subtitle">Projects, Components, Tutorials & More</div>
     </header>
 
+    <div class="nav-tabs">
+        <div class="nav-tab" data-tab="welcome">Home</div>
+        <div class="nav-tab" data-tab="ezcomponents">EZ Components</div>
+        <div class="nav-tab" data-tab="projects">Projects</div>
+        <div class="nav-tab" data-tab="tutorials">Tutorials</div>
+        <div class="nav-tab" data-tab="blog">Blog</div>
+    </div>
+
     <main>
-        <h2>Component Demos</h2>
-        <p>Explore the available components and their interactive demos:</p>
-
-        <div class="component-grid">
-            <div class="component-card">
-                <div class="card-header">Button Components</div>
-                <div class="card-body">
-                    <div class="card-description">
-                        Create interactive buttons with various styles, emoji support, 
-                        and event handling. Includes a visual button creator tool.
+        <!-- Welcome Section (Default) -->
+        <section id="welcome" class="content-section active">
+            <div class="welcome-section">
+                <h1 class="welcome-title">Welcome to Botman's GitHub Pages</h1>
+                <p class="welcome-subtitle">Explore my projects, tutorials, and resources</p>
+                <p class="welcome-description">
+                    This site showcases my work in web development, programming projects,
+                    and educational content. Feel free to browse through the different
+                    sections using the navigation tabs above.
+                </p>
+                <div class="component-grid">
+                    <div class="component-card">
+                        <div class="card-header">Featured Project</div>
+                        <div class="card-body">
+                            <div class="card-description">
+                                Check out my latest featured project - EZ Components for creating
+                                Discord-inspired UI elements quickly and easily.
+                            </div>
+                            <a href="#" class="view-button" onclick="activateTab('ezcomponents')">Explore</a>
+                        </div>
                     </div>
-                    <a href="./components/button.html" class="view-button">View Demo</a>
+                    <div class="component-card">
+                        <div class="card-header projects">Latest Tutorial</div>
+                        <div class="card-body">
+                            <div class="card-description">
+                                View my latest tutorial on web development, JavaScript, or other
+                                programming topics.
+                            </div>
+                            <a href="#" class="view-button" onclick="activateTab('tutorials')">Learn More</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="component-card">
-                <div class="card-header embed">Embed Components</div>
-                <div class="card-body">
-                    <div class="card-description">
-                        Create rich embed cards with customizable content, fields, 
-                        colors, and more. Includes an interactive embed creator.
+        <!-- EZ Components Section -->
+        <section id="ezcomponents" class="content-section">
+            <h2 class="section-title">EZ Components</h2>
+            <p class="section-description">
+                Simple, customizable web components for your Discord-inspired UIs.
+                These components are designed to be easy to use and customize.
+            </p>
+
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="card-header">Button Components</div>
+                    <div class="card-body">
+                        <div class="card-description">
+                            Create interactive buttons with various styles, emoji support,
+                            and event handling. Includes a visual button creator tool.
+                        </div>
+                        <a href="./components/button.html" class="view-button">View Demo</a>
                     </div>
-                    <a href="./components/embed.html" class="view-button">View Demo</a>
+                </div>
+
+                <div class="component-card">
+                    <div class="card-header embed">Embed Components</div>
+                    <div class="card-body">
+                        <div class="card-description">
+                            Create rich embed cards with customizable content, fields,
+                            colors, and more. Includes an interactive embed creator.
+                        </div>
+                        <a href="./components/embed.html" class="view-button">View Demo</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="content-section">
+            <h2 class="section-title">Projects</h2>
+            <p class="section-description">
+                Explore my personal and professional programming projects.
+            </p>
+
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="card-header projects">Project 1</div>
+                    <div class="card-body">
+                        <div class="card-description">
+                            Description of Project 1 and its features.
+                        </div>
+                        <a href="#" class="view-button">View Project</a>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <div class="card-header projects">Project 2</div>
+                    <div class="card-body">
+                        <div class="card-description">
+                            Description of Project 2 and its features.
+                        </div>
+                        <a href="#" class="view-button">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tutorials Section -->
+        <section id="tutorials" class="content-section">
+            <h2 class="section-title">Tutorials</h2>
+            <p class="section-description">
+                Helpful guides and tutorials on various programming topics.
+            </p>
+
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="card-header tutorials">Tutorial 1</div>
+                    <div class="card-body">
+                        <div class="card-description">
+                            Description of Tutorial 1 and what you'll learn.
+                        </div>
+                        <a href="#" class="view-button">Read Tutorial</a>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <div class="card-header tutorials">Tutorial 2</div>
+                    <div class="card-body">
+                        <div class="card-description">
+                            Description of Tutorial 2 and what you'll learn.
+                        </div>
+                        <a href="#" class="view-button">Read Tutorial</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="content-section">
+            <h2 class="section-title">Blog</h2>
+            <p class="section-description">
+                My thoughts and insights on programming, technology, and more.
+            </p>
+
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="card-header">Blog Post 1</div>
+                    <div class="card-body">
+                        <div class="card-description">
+                            Description or excerpt from Blog Post 1.
+                        </div>
+                        <a href="#" class="view-button">Read Post</a>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <div class="card-header">Blog Post 2</div>
+                    <div class="card-body">
+                        <div class="card-description">
+                            Description or excerpt from Blog Post 2.
+                        </div>
+                        <a href="#" class="view-button">Read Post</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
         <p>Created by <a href="https://github.com/Botman64" class="footer-link">Botman64</a> | 
-        <a href="https://github.com/Botman64/EZComponents" class="footer-link">View on GitHub</a></p>
+        <a href="https://github.com/Botman64" class="footer-link">View on GitHub</a></p>
     </footer>
+
+    <script>
+        // Tab navigation functionality
+        const tabs = document.querySelectorAll('.nav-tab');
+        const contentSections = document.querySelectorAll('.content-section');
+
+        function activateTab(tabId) {
+            // Deactivate all tabs and sections
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contentSections.forEach(section => section.classList.remove('active'));
+
+            // Activate the selected tab and section
+            const selectedTab = document.querySelector(`.nav-tab[data-tab="${tabId}"]`);
+            if (selectedTab) selectedTab.classList.add('active');
+
+            const selectedSection = document.getElementById(tabId);
+            if (selectedSection) selectedSection.classList.add('active');
+        }
+
+        // Add click event listeners to tabs
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                activateTab(tabId);
+            });
+        });
+
+        // Check for URL hash and activate corresponding tab
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                activateTab(hash);
+            }
+        });
+    </script>
 </body>
 </html>

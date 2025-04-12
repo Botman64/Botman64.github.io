@@ -119,11 +119,72 @@
             white-space: pre-wrap;
             color: #b9bbbe;
         }
+
+        /* Getting Started Section */
+        .getting-started {
+            margin: 20px 0 40px;
+            background-color: #36393f;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .getting-started h3 {
+            margin-top: 0;
+            color: #ffffff;
+        }
+
+        .getting-started p {
+            margin-bottom: 15px;
+        }
+
+        /* Installation Section */
+        .installation {
+            margin-top: 15px;
+        }
+
+        .installation-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Discord Embed Components Demo</h1>
+
+        <div class="getting-started">
+            <h3>Getting Started</h3>
+            <p>Follow these simple steps to add Discord-style embeds to your project:</p>
+
+            <div class="installation">
+                <div class="installation-title">Add the script to your HTML:</div>
+                <div class="code-block">
+<pre><!-- Include the EZEmbed component -->
+&lt;script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/embed.js"&gt;&lt;/script&gt;
+
+<!-- Include the EZEmbedCreator component (optional) -->
+&lt;script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/embedCreator.js"&gt;&lt;/script&gt;</pre>
+                </div>
+
+                <div class="installation-title">Create your first embed:</div>
+                <div class="code-block">
+<pre>// Create a simple embed
+const myEmbed = new EZEmbed(
+    document.getElementById('embed-container'),
+    {
+        title: 'My First Embed',
+        description: 'This is a simple embed created with EZComponents',
+        color: '#5865F2'
+    }
+);
+
+// Render the embed
+myEmbed.render();</pre>
+                </div>
+            </div>
+        </div>
 
         <div class="demo-section">
             <h2>Static Embed Component</h2>

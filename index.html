@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EZ Components - Botman64</title>
+    <style>
+        body {
+            font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2c2f33;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #23272a;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            color: #b9bbbe;
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
+
+        main {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .component-card {
+            background-color: #36393f;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .component-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            background-color: #5865F2;
+            color: white;
+            padding: 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .card-header.embed {
+            background-color: #ED4245;
+        }
+
+        .card-body {
+            padding: 20px;
+            color: #dcddde;
+        }
+
+        .card-description {
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .view-button {
+            display: inline-block;
+            background-color: #5865F2;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .view-button:hover {
+            background-color: #4752c4;
+        }
+
+        footer {
+            background-color: #23272a;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #b9bbbe;
+        }
+
+        .footer-link {
+            color: #5865F2;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>EZ Components</h1>
+        <div class="subtitle">Simple, customizable web components for your Discord-inspired UIs</div>
+    </header>
+
+    <main>
+        <h2>Component Demos</h2>
+        <p>Explore the available components and their interactive demos:</p>
+
+        <div class="component-grid">
+            <div class="component-card">
+                <div class="card-header">Button Components</div>
+                <div class="card-body">
+                    <div class="card-description">
+                        Create interactive buttons with various styles, emoji support, 
+                        and event handling. Includes a visual button creator tool.
+                    </div>
+                    <a href="./components/button.html" class="view-button">View Demo</a>
+                </div>
+            </div>
+
+            <div class="component-card">
+                <div class="card-header embed">Embed Components</div>
+                <div class="card-body">
+                    <div class="card-description">
+                        Create rich embed cards with customizable content, fields, 
+                        colors, and more. Includes an interactive embed creator.
+                    </div>
+                    <a href="./components/embed.html" class="view-button">View Demo</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Created by <a href="https://github.com/Botman64" class="footer-link">Botman64</a> | 
+        <a href="https://github.com/Botman64/EZComponents" class="footer-link">View on GitHub</a></p>
+    </footer>
+</body>
+</html>

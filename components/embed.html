@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Embed Components Demo</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2c2f33;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .demo-section {
+            margin: 40px 0;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .column {
+            flex: 1;
+        }
+
+        .code-block {
+            background: #23272a;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: monospace;
+            overflow-x: auto;
+            color: #b9bbbe;
+        }
+
+        .preview-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        #embed-creator {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        #export-json {
+            padding: 10px 20px;
+            background: #5865F2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 20px auto;
+            display: block;
+        }
+
+        #json-output {
+            background: #23272a;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: monospace;
+            margin-top: 20px;
+            min-height: 100px;
+            white-space: pre-wrap;
+            color: #b9bbbe;
+        }
+
+        .output-section {
+            margin-top: 20px;
+            background: #36393f;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .output-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        #event-log {
+            background: #2f3136;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: monospace;
+            max-height: 150px;
+            overflow-y: auto;
+            color: #b9bbbe;
+            margin-bottom: 15px;
+            white-space: pre-wrap;
+        }
+
+        #json-output {
+            background: #2f3136;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: monospace;
+            margin-top: 10px;
+            min-height: 40px;
+            white-space: pre-wrap;
+            color: #b9bbbe;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Discord Embed Components Demo</h1>
+
+        <div class="demo-section">
+            <h2>Static Embed Component</h2>
+            <div class="row">
+                <div class="column">
+                    <div class="code-block">
+                        <pre>// Create a static embed
+const staticEmbed = new EZEmbed(
+    document.getElementById('static-embed-container'),
+    {
+        title: 'Static Embed Example',
+        description: 'This is a static embed that displays content',
+        color: '#ED4245',
+        author: {
+            name: 'Example Author',
+            iconUrl: 'https://via.placeholder.com/64'
+        },
+        thumbnail: 'https://via.placeholder.com/150',
+        fields: [
+            { name: 'Field 1', value: 'Value 1' },
+            { name: 'Field 2', value: 'Value 2' },
+            { name: 'Long Field', value: 'This field spans the full width', inline: false }
+        ],
+        footer: {
+            text: 'Footer Text',
+            timestamp: true
+        }
+    }
+);
+
+staticEmbed.render();</pre>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="preview-container" id="static-embed-container"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Embed Creator Component</h2>
+            <p>Create and customize an embed with the interactive creator:</p>
+            <div id="embed-creator"></div>
+
+            <div class="output-section">
+                <div class="output-title">Event Log:</div>
+                <div id="event-log">// Events will appear here</div>
+
+                <button id="export-json">Export JSON</button>
+                <div id="json-output">// JSON output will appear here</div>
+            </div>
+
+            <div class="code-block">
+                <pre>// Initialize the embed creator
+const creator = new EZEmbedCreator(
+    document.getElementById('embed-creator'),
+    {
+        initialData: {
+            title: 'Interactive Embed Creator',
+            description: 'Create and customize embeds with this interactive tool',
+            color: '#5865F2'
+        },
+        colorPresets: [
+            '#5865F2', '#ED4245', '#FEE75C',
+            '#57F287', '#EB459E', '#7289DA'
+        ]
+    }
+);
+
+// Initialize the creator
+creator.init();
+
+// Listen for updates
+creator.on('update', (data) => {
+    console.log('Embed updated:', data);
+    const eventLog = document.getElementById('event-log');
+    eventLog.textContent += `\nUpdate: ${JSON.stringify(data, null, 2)}`;
+    // Auto-scroll to bottom
+    eventLog.scrollTop = eventLog.scrollHeight;
+});
+
+// Export JSON button
+document.getElementById('export-json').addEventListener('click', () => {
+    const jsonOutput = document.getElementById('json-output');
+    const embedData = creator.toJSON();
+    jsonOutput.textContent = JSON.stringify(embedData, null, 2);
+});</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load components -->
+    <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/embed.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/embedCreator.js"></script>
+
+    <script>
+        // Create a static embed
+        const staticEmbed = new EZEmbed(
+            document.getElementById('static-embed-container'),
+            {
+                title: 'Static Embed Example',
+                description: 'This is a static embed that displays content',
+                color: '#ED4245',
+                author: {
+                    name: 'Example Author',
+                    iconUrl: 'https://via.placeholder.com/64'
+                },
+                thumbnail: 'https://via.placeholder.com/150',
+                fields: [
+                    { name: 'Field 1', value: 'Value 1' },
+                    { name: 'Field 2', value: 'Value 2' },
+                    { name: 'Long Field', value: 'This field spans the full width', inline: false }
+                ],
+                footer: {
+                    text: 'Footer Text',
+                    timestamp: true
+                }
+            }
+        );
+
+        staticEmbed.render();
+
+        // Initialize the embed creator
+        const creator = new EZEmbedCreator(
+            document.getElementById('embed-creator'),
+            {
+                initialData: {
+                    title: 'Interactive Embed Creator',
+                    description: 'Create and customize embeds with this interactive tool',
+                    color: '#5865F2'
+                },
+                colorPresets: [
+                    '#5865F2', '#ED4245', '#FEE75C',
+                    '#57F287', '#EB459E', '#7289DA'
+                ]
+            }
+        );
+
+        // Initialize the creator
+        creator.init();
+
+        // Listen for updates
+        creator.on('update', (data) => {
+            console.log('Embed updated:', data);
+            const eventLog = document.getElementById('event-log');
+            eventLog.textContent += `\nUpdate: ${JSON.stringify(data, null, 2)}`;
+            // Auto-scroll to bottom
+            eventLog.scrollTop = eventLog.scrollHeight;
+        });
+
+        // Export JSON button
+        document.getElementById('export-json').addEventListener('click', () => {
+            const jsonOutput = document.getElementById('json-output');
+            const embedData = creator.toJSON();
+            jsonOutput.textContent = JSON.stringify(embedData, null, 2);
+        });
+    </script>
+</body>
+</html>

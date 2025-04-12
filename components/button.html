@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Components Demo</title>
+    <style>
+        body {
+            font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2c2f33;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .demo-section {
+            margin: 40px 0;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            background-color: #36393f;
+            padding: 20px;
+            border-radius: 5px;
+            justify-content: center;
+        }
+
+        .code-block {
+            background: #23272a;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: monospace;
+            overflow-x: auto;
+            color: #b9bbbe;
+            margin-top: 20px;
+        }
+
+        #button-creator {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .output-section {
+            margin-top: 20px;
+            background: #36393f;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .output-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        #event-log {
+            background: #2f3136;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: monospace;
+            max-height: 150px;
+            overflow-y: auto;
+            color: #b9bbbe;
+            margin-bottom: 15px;
+            white-space: pre-wrap;
+        }
+
+        #export-json {
+            padding: 10px 20px;
+            background: #5865F2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            display: block;
+        }
+
+        #json-output {
+            background: #2f3136;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: monospace;
+            margin-top: 10px;
+            min-height: 40px;
+            white-space: pre-wrap;
+            color: #b9bbbe;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Button Components Demo</h1>
+
+        <div class="demo-section">
+            <h2>Static Button Examples</h2>
+            <p>Click on the buttons to see the event handlers in action.</p>
+            <div class="button-row" id="static-buttons"></div>
+
+            <div class="code-block">
+<pre>// Create different button styles
+const container = document.getElementById('static-buttons');
+
+// Primary button with hover and click handlers
+const primaryButton = new EZButton(
+    container,
+    {
+        text: 'Primary Button',
+        style: 'primary',
+        emoji: '🚀',
+        onHover: (isHovering, event, button) => {
+            console.log(`Hover ${isHovering ? 'entered' : 'exited'}`);
+        },
+        onClick: (event, button) => {
+            console.log('Button clicked!');
+            button.setActive(!button.options.active);
+        },
+        onActive: (button) => {
+            console.log('Button activated');
+            // After 2 seconds, deactivate the button
+            setTimeout(() => {
+                button.setActive(false);
+                console.log('Button automatically deactivated after 2s');
+            }, 2000);
+        },
+        onInactive: (button) => {
+            console.log('Button deactivated');
+        }
+    }
+);
+primaryButton.render();
+
+// Secondary button
+const secondaryButton = new EZButton(
+    container,
+    {
+        text: 'Secondary',
+        style: 'secondary'
+    }
+);
+secondaryButton.render();
+
+// Success button
+const successButton = new EZButton(
+    container,
+    {
+        text: 'Success',
+        style: 'success',
+        emoji: '✅'
+    }
+);
+successButton.render();
+
+// Danger button
+const dangerButton = new EZButton(
+    container,
+    {
+        text: 'Danger',
+        style: 'danger',
+        emoji: '⚠️'
+    }
+);
+dangerButton.render();
+
+// Link button
+const linkButton = new EZButton(
+    container,
+    {
+        text: 'Visit Site',
+        style: 'link',
+        url: 'https://example.com'
+    }
+);
+linkButton.render();
+
+// Disabled button
+const disabledButton = new EZButton(
+    container,
+    {
+        text: 'Disabled',
+        style: 'primary',
+        disabled: true
+    }
+);
+disabledButton.render();</pre>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Button Creator Component</h2>
+            <p>To use the creator:</p>
+            <ul>
+                <li>Edit the text by clicking and typing</li>
+                <li>Click on the + icon to add an emoji</li>
+                <li>Click anywhere else on the button to open settings</li>
+            </ul>
+            <div id="button-creator"></div>
+
+            <div class="output-section">
+                <div class="output-title">Event Log:</div>
+                <div id="event-log">// Events will appear here</div>
+
+                <button id="export-json">Export JSON</button>
+                <div id="json-output">// JSON output will appear here</div>
+            </div>
+
+            <div class="code-block">
+<pre>// Initialize the button creator
+const creator = new EZButtonCreator(
+    document.getElementById('button-creator'),
+    {
+        initialData: {
+            text: 'Click Me',
+            style: 'primary',
+            emoji: '👋'
+        }
+    }
+);
+
+// Initialize the creator
+creator.init();
+
+// Listen for updates
+creator.on('update', (data) => {
+    console.log('Button updated:', data);
+    const eventLog = document.getElementById('event-log');
+    eventLog.textContent += `\nUpdate: ${JSON.stringify(data, null, 2)}`;
+    // Auto-scroll to bottom
+    eventLog.scrollTop = eventLog.scrollHeight;
+});
+
+// Export JSON button
+document.getElementById('export-json').addEventListener('click', () => {
+    const jsonOutput = document.getElementById('json-output');
+    const buttonData = creator.toJSON();
+    jsonOutput.textContent = JSON.stringify(buttonData, null, 2);
+});</pre>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Custom Button Styling</h2>
+            <p>For detailed button styling options, please check out our <a href="style-editor-demo.html" style="color: #5865F2;">Style Editor Demo</a>.</p>
+
+            <div class="code-block">
+<pre>// Button Styling API
+const button = new EZButton(container, options);
+button.render();
+
+// Change specific CSS properties
+button.setStyleProperty('backgroundColor', '#ff4040', 'root');
+button.setStyleProperty('fontSize', '18px', 'text');
+button.setStyleProperty('color', 'yellow', 'emoji');
+
+// Get current style value
+const bgColor = button.getStyleProperty('backgroundColor', 'root');
+
+// Set multiple properties at once
+button.setStyleProperties({
+    borderRadius: '20px',
+    boxShadow: '0 4px 8px rgba(0,0,0,0.3)',
+    padding: '12px 24px'
+}, 'root');
+
+// Available elements to style:
+// - root: The main button container
+// - text: The text content
+// - emoji: The emoji element (if present)
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load components -->
+
+    <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/button.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/buttonCreator.js"></script>
+
+    <script>
+        // Create different button styles
+        const container = document.getElementById('static-buttons');
+
+        // Primary button with hover and click handlers
+        const primaryButton = new EZButton(
+            container,
+            {
+                text: 'Primary Button',
+                style: 'primary',
+                emoji: '🚀',
+                onHover: (isHovering, event, button) => {
+                    console.log(`Hover ${isHovering ? 'entered' : 'exited'}`);
+                },
+                onClick: (event, button) => {
+                    console.log('Button clicked!');
+                    button.setActive(!button.options.active);
+                },
+                onActive: (button) => {
+                    console.log('Button activated');
+                    // After 2 seconds, deactivate the button
+                    setTimeout(() => {
+                        button.setActive(false);
+                        console.log('Button automatically deactivated after 2s');
+                    }, 2000);
+                },
+                onInactive: (button) => {
+                    console.log('Button deactivated');
+                }
+            }
+        );
+        primaryButton.render();
+
+        // Secondary button
+        const secondaryButton = new EZButton(
+            container,
+            {
+                text: 'Secondary',
+                style: 'secondary'
+            }
+        );
+        secondaryButton.render();
+
+        // Success button
+        const successButton = new EZButton(
+            container,
+            {
+                text: 'Success',
+                style: 'success',
+                emoji: '✅'
+            }
+        );
+        successButton.render();
+
+        // Danger button
+        const dangerButton = new EZButton(
+            container,
+            {
+                text: 'Danger',
+                style: 'danger',
+                emoji: '⚠️'
+            }
+        );
+        dangerButton.render();
+
+        // Link button
+        const linkButton = new EZButton(
+            container,
+            {
+                text: 'Visit Site',
+                style: 'link',
+                url: 'https://example.com'
+            }
+        );
+        linkButton.render();
+
+        // Disabled button
+        const disabledButton = new EZButton(
+            container,
+            {
+                text: 'Disabled',
+                style: 'primary',
+                disabled: true
+            }
+        );
+        disabledButton.render();
+
+        // Initialize the button creator
+        const creator = new EZButtonCreator(
+            document.getElementById('button-creator'),
+            {
+                initialData: {
+                    text: 'Click Me',
+                    style: 'primary',
+                    emoji: '👋'
+                }
+            }
+        );
+
+        // Initialize the creator
+        creator.init();
+
+        // Listen for updates
+        creator.on('update', (data) => {
+            console.log('Button updated:', data);
+            const eventLog = document.getElementById('event-log');
+            eventLog.textContent += `\nUpdate: ${JSON.stringify(data, null, 2)}`;
+            // Auto-scroll to bottom
+            eventLog.scrollTop = eventLog.scrollHeight;
+        });
+
+        // Export JSON button
+        document.getElementById('export-json').addEventListener('click', () => {
+            const jsonOutput = document.getElementById('json-output');
+            const buttonData = creator.toJSON();
+            jsonOutput.textContent = JSON.stringify(buttonData, null, 2);
+        });
+    </script>
+</body>
+</html>

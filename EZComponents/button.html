@@ -103,11 +103,72 @@
             white-space: pre-wrap;
             color: #b9bbbe;
         }
+
+        /* Getting Started Section */
+        .getting-started {
+            margin: 20px 0 40px;
+            background-color: #36393f;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .getting-started h3 {
+            margin-top: 0;
+            color: #ffffff;
+        }
+
+        .getting-started p {
+            margin-bottom: 15px;
+        }
+
+        /* Installation Section */
+        .installation {
+            margin-top: 15px;
+        }
+
+        .installation-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Button Components Demo</h1>
+
+        <div class="getting-started">
+            <h3>Getting Started</h3>
+            <p>Follow these simple steps to add EZComponents buttons to your project:</p>
+
+            <div class="installation">
+                <div class="installation-title">Add the script to your HTML:</div>
+                <div class="code-block">
+<pre><!-- Include the EZButton component -->
+&lt;script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/button.js"&gt;&lt;/script&gt;
+
+<!-- Include the EZButtonCreator component (optional) -->
+&lt;script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/buttonCreator.js"&gt;&lt;/script&gt;</pre>
+                </div>
+
+                <div class="installation-title">Create your first button:</div>
+                <div class="code-block">
+<pre>// Create a button
+const myButton = new EZButton(
+    document.getElementById('button-container'),
+    {
+        text: 'My Button',
+        style: 'primary',
+        emoji: '👍'
+    }
+);
+
+// Render the button
+myButton.render();</pre>
+                </div>
+            </div>
+        </div>
 
         <div class="demo-section">
             <h2>Static Button Examples</h2>

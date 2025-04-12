@@ -170,10 +170,33 @@
     .code-preview {
       overflow-x: scroll !important;
     }
+
+    .home-button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .home-button svg {
+      width: 24px;
+      height: 24px;
+      fill: #ffffff;
+    }
   </style>
 </head>
 
 <body>
+  <a href="../index.html" class="home-button">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+    </svg>
+    Home
+  </a>
+
   <div class="container">
     <h1>EZ Component Style Editor</h1>
 

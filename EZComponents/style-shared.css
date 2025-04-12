@@ -93,3 +93,38 @@
 .code-preview {
   overflow-x:scroll
 }
+
+/* Home Button Styling */
+.home-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #5865F2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+    z-index: 100;
+}
+
+.home-button:hover {
+    background-color: #4752c4;
+}
+
+.home-button svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+/* Make sure container has relative positioning for absolute positioning of home button */
+body {
+    position: relative;
+}

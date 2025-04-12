@@ -157,9 +157,40 @@
             margin-bottom: 10px;
             color: #ffffff;
         }
+
+        .home-button {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #5865f2;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .home-button svg {
+            width: 20px;
+            height: 20px;
+            fill: #ffffff;
+        }
+
+        .home-button:hover {
+            background-color: #4752c4;
+        }
     </style>
 </head>
 <body>
+    <a href="../index.html" class="home-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+        Home
+    </a>
+
     <div class="container">
         <h1>EZ Select Menu Creator</h1>
 

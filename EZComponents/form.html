@@ -139,9 +139,34 @@
             margin-bottom: 10px;
             color: #ffffff;
         }
+
+        /* Home Button */
+        .home-button {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .home-button svg {
+            width: 24px;
+            height: 24px;
+            fill: #ffffff;
+        }
     </style>
 </head>
 <body>
+    <a href="../index.html" class="home-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+        Home
+    </a>
+
     <div class="container">
         <h1>EZ Form Demo</h1>
 

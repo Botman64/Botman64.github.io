@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#2c2f33"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1200" height="100" fill="#23272a"/>
+  <text x="600" y="65" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle" fill="#ffffff">EZComponents Select Menu</text>
+
+  <!-- Title -->
+  <text x="600" y="140" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#ffffff">Discord-Style Dropdown Menus</text>
+
+  <!-- Left Side: Closed Select Menu -->
+  <g transform="translate(200, 250)">
+    <text x="140" y="-30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#ffffff">Closed Menu</text>
+    <rect width="280" height="60" rx="4" fill="#36393f"/>
+    <text x="20" y="38" font-family="Arial, sans-serif" font-size="18" fill="#dcddde">Select an option</text>
+    <!-- Down Arrow -->
+    <path d="M245,30 L260,45 L230,45 Z" fill="#b9bbbe"/>
+  </g>
+
+  <!-- Right Side: Open Select Menu -->
+  <g transform="translate(600, 250)">
+    <text x="200" y="-30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#ffffff">Open Menu with Options</text>
+
+    <!-- Selected value -->
+    <rect width="400" height="60" rx="4" fill="#36393f"/>
+    <text x="60" y="38" font-family="Arial, sans-serif" font-size="18" fill="#ffffff">Online</text>
+    <circle cx="30" cy="30" r="10" fill="#57F287"/>
+    <!-- Up Arrow -->
+    <path d="M360,45 L375,30 L345,30 Z" fill="#b9bbbe"/>
+
+    <!-- Dropdown Options -->
+    <g transform="translate(0, 60)">
+      <rect width="400" height="240" rx="4" fill="#36393f"/>
+
+      <!-- Online Option (Selected) -->
+      <g transform="translate(0, 0)">
+        <rect width="400" height="60" fill="#5865F2" opacity="0.3"/>
+        <circle cx="30" cy="30" r="10" fill="#57F287"/>
+        <text x="60" y="28" font-family="Arial, sans-serif" font-size="18" fill="#ffffff">Online</text>
+        <text x="60" y="48" font-family="Arial, sans-serif" font-size="14" fill="#b9bbbe">Shows you as online</text>
+      </g>
+
+      <!-- Idle Option -->
+      <g transform="translate(0, 60)">
+        <rect width="400" height="60" fill="transparent"/>
+        <circle cx="30" cy="30" r="10" fill="#FEE75C"/>
+        <text x="60" y="28" font-family="Arial, sans-serif" font-size="18" fill="#ffffff">Idle</text>
+        <text x="60" y="48" font-family="Arial, sans-serif" font-size="14" fill="#b9bbbe">Shows you as away</text>
+      </g>
+
+      <!-- DND Option -->
+      <g transform="translate(0, 120)">
+        <rect width="400" height="60" fill="transparent"/>
+        <circle cx="30" cy="30" r="10" fill="#ED4245"/>
+        <text x="60" y="28" font-family="Arial, sans-serif" font-size="18" fill="#ffffff">Do Not Disturb</text>
+        <text x="60" y="48" font-family="Arial, sans-serif" font-size="14" fill="#b9bbbe">Only urgent mentions</text>
+      </g>
+
+      <!-- Invisible Option -->
+      <g transform="translate(0, 180)">
+        <rect width="400" height="60" fill="transparent"/>
+        <circle cx="30" cy="30" r="10" fill="#747f8d"/>
+        <text x="60" y="28" font-family="Arial, sans-serif" font-size="18" fill="#ffffff">Invisible</text>
+        <text x="60" y="48" font-family="Arial, sans-serif" font-size="14" fill="#b9bbbe">Appear offline to everyone</text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#2c2f33"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1200" height="100" fill="#23272a"/>
+  <text x="600" y="65" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle" fill="#ffffff">EZComponents Button</text>
+
+  <!-- Left side buttons -->
+  <g transform="translate(150, 180)">
+    <text x="0" y="-20" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff">Button Styles</text>
+
+    <!-- Primary Button -->
+    <g transform="translate(0, 30)">
+      <rect width="220" height="60" rx="4" fill="#5865F2"/>
+      <text x="110" y="38" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#ffffff">Primary Button 🚀</text>
+    </g>
+
+    <!-- Secondary Button -->
+    <g transform="translate(0, 110)">
+      <rect width="220" height="60" rx="4" fill="#4f545c"/>
+      <text x="110" y="38" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#ffffff">Secondary</text>
+    </g>
+
+    <!-- Success Button -->
+    <g transform="translate(0, 190)">
+      <rect width="220" height="60" rx="4" fill="#57F287"/>
+      <text x="110" y="38" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#ffffff">Success ✅</text>
+    </g>
+
+    <!-- Danger Button -->
+    <g transform="translate(0, 270)">
+      <rect width="220" height="60" rx="4" fill="#ED4245"/>
+      <text x="110" y="38" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#ffffff">Danger ⚠️</text>
+    </g>
+  </g>
+
+  <!-- Button Creator Preview -->
+  <g transform="translate(650, 180)">
+    <text x="150" y="-20" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff">Button Creator</text>
+
+    <rect width="380" height="300" rx="8" fill="#36393f"/>
+
+    <!-- Title -->
+    <text x="190" y="40" font-family="Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="#ffffff">Button Creator</text>
+
+    <!-- Button preview -->
+    <g transform="translate(90, 100)">
+      <rect width="200" height="60" rx="4" fill="#5865F2"/>
+      <text x="100" y="38" font-family="Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="#ffffff">Click Me 👋</text>
+    </g>
+
+    <!-- Controls -->
+    <g transform="translate(40, 200)">
+      <rect width="140" height="40" rx="4" fill="#4f545c"/>
+      <text x="70" y="26" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#ffffff">Style</text>
+
+      <rect x="160" width="140" height="40" rx="4" fill="#5865F2"/>
+      <text x="230" y="26" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#ffffff">Export JSON</text>
+    </g>
+  </g>
+</svg>

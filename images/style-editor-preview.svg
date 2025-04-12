@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#2c2f33"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1200" height="100" fill="#23272a"/>
+  <text x="600" y="65" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle" fill="#ffffff">EZComponents Style Editor</text>
+
+  <!-- Title -->
+  <text x="600" y="140" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#ffffff">Customize Component Appearance</text>
+
+  <!-- Layout -->
+  <g transform="translate(150, 180)">
+    <rect width="900" height="380" rx="8" fill="#36393f"/>
+
+    <!-- Tabs -->
+    <g transform="translate(30, 30)">
+      <rect width="130" height="40" rx="4" fill="#5865f2"/>
+      <text x="65" y="25" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#ffffff">Select Menu</text>
+
+      <rect x="140" width="130" height="40" rx="4" fill="#36393f"/>
+      <text x="205" y="25" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#ffffff">Form</text>
+
+      <rect x="280" width="130" height="40" rx="4" fill="#36393f"/>
+      <text x="345" y="25" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#ffffff">Button</text>
+    </g>
+
+    <!-- Preview Panel -->
+    <g transform="translate(30, 100)">
+      <rect width="380" height="250" rx="8" fill="#2f3136"/>
+      <text x="190" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#ffffff">Preview</text>
+
+      <!-- Component Preview -->
+      <g transform="translate(90, 120)">
+        <rect width="200" height="60" rx="4" fill="#ff4040"/>
+        <text x="100" y="38" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#ffffff">Style Me 🎨</text>
+      </g>
+    </g>
+
+    <!-- Style Editor Panel - Increased bottom padding and lowered input positions -->
+    <g transform="translate(450, 100)">
+      <rect width="420" height="250" rx="8" fill="#2f3136"/>
+      <text x="210" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#ffffff">Edit Styles</text>
+
+      <!-- Target Element Dropdown -->
+      <g transform="translate(30, 50)">
+        <text font-family="Arial, sans-serif" font-size="14" fill="#b9bbbe">Target Element:</text>
+        <rect y="25" width="360" height="30" rx="4" fill="#36393f"/>
+        <text x="15" y="45" font-family="Arial, sans-serif" font-size="14" fill="#ffffff">root - Main button container</text>
+      </g>
+
+      <!-- CSS Property Dropdown - With proper spacing -->
+      <g transform="translate(30, 115)">
+        <text y="0" font-family="Arial, sans-serif" font-size="14" fill="#b9bbbe">CSS Property:</text>
+        <rect y="25" width="360" height="30" rx="4" fill="#36393f"/>
+        <text x="15" y="45" font-family="Arial, sans-serif" font-size="14" fill="#ffffff">backgroundColor</text>
+      </g>
+
+      <!-- Value Input - Lowered by an additional 10px to create more space at bottom -->
+      <g transform="translate(30, 180)">
+        <text y="0" font-family="Arial, sans-serif" font-size="14" fill="#b9bbbe">Value:</text>
+        <rect y="25" width="360" height="30" rx="4" fill="#36393f"/>
+        <text x="15" y="45" font-family="Arial, sans-serif" font-size="14" fill="#ffffff">#ff4040</text>
+      </g>
+    </g>
+  </g>
+</svg>

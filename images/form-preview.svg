@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#2c2f33"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1200" height="100" fill="#23272a"/>
+  <text x="600" y="65" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle" fill="#ffffff">EZComponents Form</text>
+
+  <!-- Title -->
+  <text x="600" y="140" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#ffffff">Interactive Forms with Validation</text>
+
+  <!-- Form Container -->
+  <g transform="translate(350, 180)">
+    <rect width="500" height="400" rx="8" fill="#36393f"/>
+
+    <!-- Form Header -->
+    <g transform="translate(0, 30)">
+      <text x="250" y="0" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#ffffff">Create Account</text>
+      <text x="250" y="30" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#b9bbbe">Fill out the information below to register</text>
+    </g>
+
+    <!-- Username Field - moved label closer to input (15px from input) -->
+    <g transform="translate(50, 100)">
+      <text font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff">Username</text>
+      <rect y="25" width="400" height="40" rx="4" fill="#2f3136"/>
+      <text x="15" y="50" font-family="Arial, sans-serif" font-size="16" fill="#72767d">Enter a username</text>
+    </g>
+
+    <!-- Email Field - moved label closer to input (15px from input) -->
+    <g transform="translate(50, 180)">
+      <text y="10" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff">Email Address</text>
+      <rect y="25" width="400" height="40" rx="4" fill="#2f3136"/>
+      <text x="15" y="50" font-family="Arial, sans-serif" font-size="16" fill="#72767d">Enter your email</text>
+    </g>
+
+    <!-- Password Field - moved label closer to input (15px from input) -->
+    <g transform="translate(50, 260)">
+      <text y="10" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff">Password</text>
+      <rect y="25" width="400" height="40" rx="4" fill="#2f3136"/>
+      <text x="15" y="50" font-family="Arial, sans-serif" font-size="16" fill="#72767d">••••••••</text>
+    </g>
+
+    <!-- Submit Button - proper spacing from last field (50px gap) -->
+    <g transform="translate(50, 340)">
+      <rect width="400" height="40" rx="4" fill="#5865f2"/>
+      <text x="200" y="26" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#ffffff">Create Account</text>
+    </g>
+  </g>
+</svg>

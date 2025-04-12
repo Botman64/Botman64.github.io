@@ -113,10 +113,6 @@
     z-index: 100;
 }
 
-.home-button:hover {
-    background-color: #4752c4;
-}
-
 .home-button svg {
     width: 16px;
     height: 16px;

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EZ Form Demo</title>
+    <link rel="stylesheet" href="style-shared.css">
+    <style>
+        body {
+            font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2c2f33;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .demo-section {
+            margin: 40px 0;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+        }
+
+        .demo-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .form-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-title {
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .output-panel {
+            flex: 1;
+            min-width: 300px;
+            background-color: #36393f;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+        }
+
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        #form-event-log {
+            background: #2f3136;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: monospace;
+            height: 300px;
+            overflow-y: auto;
+            font-size: 12px;
+            color: #b9bbbe;
+            white-space: pre-wrap;
+            margin-top: 10px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .action-btn {
+            background-color: #5865f2;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .action-btn:hover {
+            background-color: #4752c4;
+        }
+
+        .action-btn.secondary {
+            background-color: #4f545c;
+        }
+
+        .action-btn.secondary:hover {
+            background-color: #686d73;
+        }
+
+        /* Getting Started Section */
+        .getting-started {
+            margin: 20px 0 40px;
+            background-color: #36393f;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .getting-started h3 {
+            margin-top: 0;
+            color: #ffffff;
+        }
+
+        .getting-started p {
+            margin-bottom: 15px;
+        }
+
+        /* Installation Section */
+        .installation {
+            margin-top: 15px;
+        }
+
+        .installation-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>EZ Form Demo</h1>
+
+        <div class="getting-started">
+            <h3>Getting Started</h3>
+            <p>Follow these simple steps to add EZComponents forms to your project:</p>
+
+            <div class="installation">
+                <div class="installation-title">Add the scripts to your HTML:</div>
+                <div class="code-block">
+<pre><!-- Include the EZSelectMenu component (required for form select fields) -->
+&lt;script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/selectMenu.js"&gt;&lt;/script&gt;
+
+<!-- Include the EZForm component -->
+&lt;script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/form.js"&gt;&lt;/script&gt;</pre>
+                </div>
+
+                <div class="installation-title">Create your first form:</div>
+                <div class="code-block">
+<pre>// Create a simple form
+const myForm = new EZForm(
+    document.getElementById('form-container'),
+    {
+        title: 'User Information',
+        description: 'Please fill out your details',
+        fields: [
+            {
+                id: 'name',
+                type: 'text',
+                label: 'Full Name',
+                placeholder: 'Enter your name',
+                required: true
+            },
+            {
+                id: 'email',
+                type: 'email',
+                label: 'Email Address',
+                placeholder: 'Enter your email'
+            }
+        ],
+        onSubmit: (formData) => {
+            console.log('Form submitted:', formData);
+        }
+    }
+);
+
+// Render the form
+myForm.render();</pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Registration Form Example</h2>
+
+            <div class="demo-row">
+                <div class="form-container">
+                    <div class="form-title">User Registration</div>
+                    <div id="registration-form"></div>
+
+                    <div class="btn-row">
+                        <button id="reset-form" class="action-btn secondary">Reset Form</button>
+                        <button id="fill-form" class="action-btn">Fill With Data</button>
+                    </div>
+                </div>
+
+                <div class="output-panel">
+                    <h3 class="panel-title">Form Events & Data</h3>
+                    <div id="form-event-log">// Form events will appear here</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Conditional Fields Example</h2>
+            <div class="demo-row">
+                <div class="form-container" id="conditional-form-container"></div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Implementation Examples</h2>
+
+            <div class="output-panel">
+                <h3 class="panel-title">Form Implementation Code</h3>
+                <div class="code-block">
+                    <pre>
+// Basic Form Implementation
+const myForm = new EZForm(
+    document.getElementById('form-container'),
+    {
+        title: 'User Profile',
+        description: 'Please fill out your profile information.',
+        fields: [
+            {
+                id: 'name',           // Unique identifier for the field
+                type: 'text',         // Field type (text, email, password, textarea, select, etc.)
+                label: 'Full Name',   // Display label
+                placeholder: 'Enter your full name',
+                required: true        // Make field required
+            },
+            {
+                id: 'email',
+                type: 'email',
+                label: 'Email Address',
+                placeholder: 'Enter your email',
+                required: true,
+                // Custom validation function
+                validate: (value) => {
+                    if (!value.includes('@')) return 'Please enter a valid email';
+                    return true;
+                }
+            },
+            {
+                id: 'role',
+                type: 'select',
+                label: 'Role',
+                options: [
+                    {
+                        value: 'user',
+                        label: 'Regular User',
+                        description: 'Standard account access',
+                        emoji: '👤'
+                    },
+                    {
+                        value: 'admin',
+                        label: 'Administrator',
+                        description: 'Full system access',
+                        emoji: '👑'
+                    }
+                ]
+            },
+            {
+                id: 'bio',
+                type: 'textarea',
+                label: 'Biography',
+                placeholder: 'Tell us about yourself'
+            }
+        ],
+        // Called when form is submitted and validation passes
+        onSubmit: (formData, form) => {
+            console.log('Form submitted:', formData);
+            // Process form data or send to server
+        },
+        // Called when any field value changes
+        onChange: (fieldId, value, allValues, form) => {
+            console.log(`Field "${fieldId}" changed to:`, value);
+        },
+        submitButton: {
+            text: 'Save Profile'
+        }
+    }
+);
+
+// Render the form
+myForm.render();
+
+// Form API Methods
+myForm.getValue('name');                  // Get a specific field value
+myForm.getValues();                       // Get all field values as an object
+myForm.setValue('name', 'John Doe');      // Set a specific field value
+myForm.setValues({                        // Set multiple field values at once
+    name: 'John Doe',
+    email: 'john@example.com',
+    role: 'user',
+    bio: 'Hello, I am John!'
+});
+myForm.reset();                           // Reset all fields to initial values
+myForm.disable();                         // Disable the entire form
+myForm.enable();                          // Enable the form
+
+// Form with Conditional Fields
+const conditionalForm = new EZForm(
+    document.getElementById('form-container'),
+    {
+        title: 'Payment Information',
+        fields: [
+            {
+                id: 'payment_method',
+                type: 'select',
+                label: 'Payment Method',
+                options: [
+                    { value: 'credit_card', label: 'Credit Card', emoji: '💳' },
+                    { value: 'paypal', label: 'PayPal', emoji: '📱' },
+                    { value: 'bank_transfer', label: 'Bank Transfer', emoji: '🏦' }
+                ]
+            },
+            {
+                id: 'card_number',
+                type: 'text',
+                label: 'Card Number',
+                placeholder: 'Enter your card number',
+                // This field only shows when payment_method is credit_card
+                dependsOn: {
+                    field: 'payment_method',
+                    condition: 'equals',
+                    value: 'credit_card'
+                }
+            },
+            {
+                id: 'paypal_email',
+                type: 'email',
+                label: 'PayPal Email',
+                placeholder: 'Enter your PayPal email',
+                // This field only shows when payment_method is paypal
+                dependsOn: {
+                    field: 'payment_method',
+                    condition: 'equals',
+                    value: 'paypal'
+                }
+            },
+            {
+                id: 'bank_info',
+                type: 'textarea',
+                label: 'Bank Information',
+                placeholder: 'Enter your bank details',
+                // This field only shows when payment_method is bank_transfer
+                dependsOn: {
+                    field: 'payment_method',
+                    condition: 'equals',
+                    value: 'bank_transfer'
+                }
+            }
+        ],
+        onSubmit: (formData) => {
+            console.log('Payment information:', formData);
+        }
+    }
+);
+
+conditionalForm.render();
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load components -->
+    <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/selectMenu.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/form.js"></script>
+
+    <script>
+        let registrationForm;
+        let conditionalForm;
+
+        // Initialize forms
+        function initForms() {
+            // Registration form
+            registrationForm = new EZForm(
+                document.getElementById('registration-form'),
+                {
+                    title: 'Create Account',
+                    description: 'Fill out the information below to register.',
+                    fields: [
+                        {
+                            id: 'username',
+                            type: 'text',
+                            label: 'Username',
+                            placeholder: 'Enter a username',
+                            required: true
+                        },
+                        {
+                            id: 'email',
+                            type: 'email',
+                            label: 'Email Address',
+                            placeholder: 'Enter your email',
+                            required: true,
+                            validate: (value) => {
+                                if (!value.includes('@')) return 'Please enter a valid email';
+                                return true;
+                            }
+                        },
+                        {
+                            id: 'password',
+                            type: 'password',
+                            label: 'Password',
+                            placeholder: 'Create a password',
+                            required: true,
+                            validate: (value) => {
+                                if (value.length < 8) return 'Password must be at least 8 characters';
+                                return true;
+                            }
+                        },
+                        {
+                            id: 'account_type',
+                            type: 'select',
+                            label: 'Account Type',
+                            options: [
+                                {
+                                    value: 'personal',
+                                    label: 'Personal',
+                                    description: 'For individual use',
+                                    emoji: '👤'
+                                },
+                                {
+                                    value: 'business',
+                                    label: 'Business',
+                                    description: 'For company use',
+                                    emoji: '🏢'
+                                },
+                                {
+                                    value: 'education',
+                                    label: 'Education',
+                                    description: 'For schools and students',
+                                    emoji: '🎓'
+                                }
+                            ]
+                        },
+                        {
+                            id: 'bio',
+                            type: 'textarea',
+                            label: 'About You',
+                            placeholder: 'Tell us about yourself'
+                        }
+                    ],
+                    onSubmit: (formData) => {
+                        const log = document.getElementById('form-event-log');
+                        log.textContent += `\n-- Form Submitted --\n${JSON.stringify(formData, null, 2)}`;
+                        log.scrollTop = log.scrollHeight;
+                    },
+                    onChange: (fieldId, value) => {
+                        const log = document.getElementById('form-event-log');
+                        log.textContent += `\nField "${fieldId}" changed: ${value}`;
+                        log.scrollTop = log.scrollHeight;
+                    },
+                    submitButton: {
+                        text: 'Create Account'
+                    }
+                }
+            );
+
+            registrationForm.render();
+
+            // Conditional form
+            conditionalForm = new EZForm(
+                document.getElementById('conditional-form-container'),
+                {
+                    title: 'Shipping Preferences',
+                    description: 'Configure your shipping options.',
+                    fields: [
+                        {
+                            id: 'shipping_method',
+                            type: 'select',
+                            label: 'Shipping Method',
+                            options: [
+                                {
+                                    value: 'standard',
+                                    label: 'Standard Shipping',
+                                    description: '5-7 business days',
+                                    emoji: '📦'
+                                },
+                                {
+                                    value: 'express',
+                                    label: 'Express Shipping',
+                                    description: '2-3 business days',
+                                    emoji: '🚚'
+                                },
+                                {
+                                    value: 'pickup',
+                                    label: 'Local Pickup',
+                                    description: 'Pickup at store',
+                                    emoji: '🏬'
+                                }
+                            ]
+                        },
+                        {
+                            id: 'address',
+                            type: 'textarea',
+                            label: 'Shipping Address',
+                            placeholder: 'Enter your full address',
+                            dependsOn: {
+                                field: 'shipping_method',
+                                condition: 'notEquals',
+                                value: 'pickup'
+                            }
+                        },
+                        {
+                            id: 'store_location',
+                            type: 'select',
+                            label: 'Pickup Location',
+                            options: [
+                                { value: 'downtown', label: 'Downtown Store' },
+                                { value: 'mall', label: 'Shopping Mall' },
+                                { value: 'airport', label: 'Airport Kiosk' }
+                            ],
+                            dependsOn: {
+                                field: 'shipping_method',
+                                condition: 'equals',
+                                value: 'pickup'
+                            }
+                        },
+                        {
+                            id: 'tracking_number',
+                            type: 'text',
+                            label: 'Tracking Number',
+                            placeholder: 'Enter tracking number if available',
+                            dependsOn: {
+                                field: 'shipping_method',
+                                condition: 'equals',
+                                value: 'express'
+                            }
+                        },
+                        {
+                            id: 'special_instructions',
+                            type: 'textarea',
+                            label: 'Special Instructions',
+                            placeholder: 'Any special delivery instructions?'
+                        }
+                    ],
+                    onSubmit: (formData) => {
+                        alert('Shipping preferences saved!\n\n' + JSON.stringify(formData, null, 2));
+                    },
+                    submitButton: {
+                        text: 'Save Preferences'
+                    }
+                }
+            );
+
+            conditionalForm.render();
+
+            // Set up form action buttons
+            document.getElementById('reset-form').addEventListener('click', () => {
+                registrationForm.reset();
+                const log = document.getElementById('form-event-log');
+                log.textContent += '\nForm reset';
+                log.scrollTop = log.scrollHeight;
+            });
+
+            document.getElementById('fill-form').addEventListener('click', () => {
+                registrationForm.setValues({
+                    username: 'johndoe',
+                    email: 'john.doe@example.com',
+                    password: 'securepassword123',
+                    account_type: 'personal',
+                    bio: 'I am a software developer from California.'
+                });
+
+                const log = document.getElementById('form-event-log');
+                log.textContent += '\nForm filled with sample data';
+                log.scrollTop = log.scrollHeight;
+            });
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', initForms);
+    </script>
+</body>
+</html>

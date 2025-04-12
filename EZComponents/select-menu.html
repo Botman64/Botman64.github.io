@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EZ Select Menu Demo</title>
+    <link rel="stylesheet" href="style-shared.css">
+    <style>
+        body {
+            font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2c2f33;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .demo-section {
+            margin: 40px 0;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+        }
+
+        .demo-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .demo-card {
+            background-color: #36393f;
+            border-radius: 5px;
+            padding: 20px;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+        }
+
+        .demo-card h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .demo-controls {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #2f3136;
+        }
+
+        .demo-controls button {
+            background-color: #5865f2;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 8px 12px;
+            margin-right: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .demo-controls button:hover {
+            background-color: #4752c4;
+        }
+
+        .demo-controls button.secondary {
+            background-color: #4f545c;
+        }
+
+        .demo-controls button.secondary:hover {
+            background-color: #686d73;
+        }
+
+        .event-log {
+            margin-top: 15px;
+            background: #2f3136;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: monospace;
+            height: 100px;
+            overflow-y: auto;
+            font-size: 13px;
+            color: #b9bbbe;
+        }
+
+        .code-block {
+            background: #23272a;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: monospace;
+            overflow-x: auto;
+            color: #b9bbbe;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+
+        /* Getting Started Section */
+        .getting-started {
+            margin: 20px 0 40px;
+            background-color: #36393f;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .getting-started h3 {
+            margin-top: 0;
+            color: #ffffff;
+        }
+
+        .getting-started p {
+            margin-bottom: 15px;
+        }
+
+        /* Installation Section */
+        .installation {
+            margin-top: 15px;
+        }
+
+        .installation-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>EZ Select Menu Component</h1>
+
+        <div class="getting-started">
+            <h3>Getting Started</h3>
+            <p>Follow these simple steps to add EZComponents select menus to your project:</p>
+
+            <div class="installation">
+                <div class="installation-title">Add the script to your HTML:</div>
+                <div class="code-block">
+<pre><!-- Include the EZSelectMenu component -->
+&lt;script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/selectMenu.js"&gt;&lt;/script&gt;</pre>
+                </div>
+
+                <div class="installation-title">Create your first select menu:</div>
+                <div class="code-block">
+<pre>// Create a simple select menu
+const mySelectMenu = new EZSelectMenu(
+    document.getElementById('select-container'),
+    {
+        placeholder: 'Choose an option',
+        options: [
+            { value: 'option1', label: 'Option 1' },
+            { value: 'option2', label: 'Option 2' },
+            { value: 'option3', label: 'Option 3' }
+        ],
+        onChange: (value) => {
+            console.log(`Selected: ${value}`);
+        }
+    }
+);
+
+// Render the select menu
+mySelectMenu.render();</pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Basic Menu Examples</h2>
+
+            <div class="demo-row">
+                <div class="demo-card">
+                    <h3>Simple Select Menu</h3>
+                    <div id="simple-select"></div>
+                    <div class="demo-controls">
+                        <button onclick="resetSimpleSelect()">Reset</button>
+                        <button onclick="disableSimpleSelect()" class="secondary">Disable</button>
+                        <button onclick="enableSimpleSelect()" class="secondary">Enable</button>
+                    </div>
+                    <div id="simple-select-log" class="event-log"></div>
+                </div>
+
+                <div class="demo-card">
+                    <h3>Rich Select Menu</h3>
+                    <div id="rich-select"></div>
+                    <div class="demo-controls">
+                        <button onclick="toggleRichSelect()">Toggle Menu</button>
+                        <button onclick="setRandomValue()" class="secondary">Random Value</button>
+                    </div>
+                    <div id="rich-select-log" class="event-log"></div>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <pre>
+// Simple Select Menu Implementation
+const simpleSelect = new EZSelectMenu(
+    document.getElementById('container-element'),
+    {
+        placeholder: 'Choose an option',
+        options: [
+            { value: 'option1', label: 'Option 1' },
+            { value: 'option2', label: 'Option 2' },
+            { value: 'option3', label: 'Option 3' }
+        ],
+        onChange: (value) => {
+            console.log(`Selected option: ${value}`);
+        }
+    }
+);
+
+// Render the select menu
+simpleSelect.render();
+
+// API Methods
+simpleSelect.setValue('option2');   // Set a specific value
+simpleSelect.getValue();            // Get current value
+simpleSelect.open();                // Open the dropdown
+simpleSelect.close();               // Close the dropdown
+simpleSelect.toggle();              // Toggle dropdown open/closed
+simpleSelect.disable();             // Disable the select menu
+simpleSelect.enable();              // Enable the select menu
+
+// Rich Select Menu With Emoji and Descriptions
+const richSelect = new EZSelectMenu(
+    document.getElementById('container-element'),
+    {
+        placeholder: 'Select your status',
+        options: [
+            {
+                value: 'online',
+                label: 'Online',
+                description: 'Shows you as online',
+                emoji: '🟢'
+            },
+            {
+                value: 'idle',
+                label: 'Idle',
+                description: 'Shows you as away',
+                emoji: '🟠'
+            },
+            {
+                value: 'dnd',
+                label: 'Do Not Disturb',
+                description: 'Only urgent mentions',
+                emoji: '🔴'
+            },
+            {
+                value: 'invisible',
+                label: 'Invisible',
+                description: 'Appear offline to everyone',
+                emoji: '⚪'
+            }
+        ],
+        value: 'online',  // Pre-select a value
+        disabled: false,  // Enable/disable the menu
+        onChange: (value, selectMenu) => {
+            console.log(`Status changed to: ${value}`);
+        },
+        onOpen: (selectMenu) => {
+            console.log('Menu opened');
+        },
+        onClose: (selectMenu) => {
+            console.log('Menu closed');
+        }
+    }
+);
+
+richSelect.render();
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load components -->
+    <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/selectMenu.js"></script>
+
+    <script>
+        // Simple Select Menu
+        let simpleSelect;
+
+        function initSimpleSelect() {
+            simpleSelect = new EZSelectMenu(
+                document.getElementById('simple-select'),
+                {
+                    placeholder: 'Choose an option',
+                    options: [
+                        { value: 'option1', label: 'Option 1' },
+                        { value: 'option2', label: 'Option 2' },
+                        { value: 'option3', label: 'Option 3' }
+                    ],
+                    onChange: (value) => {
+                        const log = document.getElementById('simple-select-log');
+                        log.innerHTML += `Selected: ${value}<br>`;
+                        log.scrollTop = log.scrollHeight;
+                    }
+                }
+            );
+
+            simpleSelect.render();
+        }
+
+        function resetSimpleSelect() {
+            simpleSelect.setValue(null);
+            document.getElementById('simple-select-log').innerHTML += 'Reset menu<br>';
+        }
+
+        function disableSimpleSelect() {
+            simpleSelect.disable();
+            document.getElementById('simple-select-log').innerHTML += 'Menu disabled<br>';
+        }
+
+        function enableSimpleSelect() {
+            simpleSelect.enable();
+            document.getElementById('simple-select-log').innerHTML += 'Menu enabled<br>';
+        }
+
+        // Rich Select Menu
+        let richSelect;
+
+        function initRichSelect() {
+            richSelect = new EZSelectMenu(
+                document.getElementById('rich-select'),
+                {
+                    placeholder: 'Select your status',
+                    options: [
+                        {
+                            value: 'online',
+                            label: 'Online',
+                            description: 'Shows you as online',
+                            emoji: '🟢'
+                        },
+                        {
+                            value: 'idle',
+                            label: 'Idle',
+                            description: 'Shows you as away',
+                            emoji: '🟠'
+                        },
+                        {
+                            value: 'dnd',
+                            label: 'Do Not Disturb',
+                            description: 'Only urgent mentions',
+                            emoji: '🔴'
+                        },
+                        {
+                            value: 'invisible',
+                            label: 'Invisible',
+                            description: 'Appear offline to everyone',
+                            emoji: '⚪'
+                        }
+                    ],
+                    onChange: (value) => {
+                        const log = document.getElementById('rich-select-log');
+                        log.innerHTML += `Status changed to: ${value}<br>`;
+                        log.scrollTop = log.scrollHeight;
+                    }
+                }
+            );
+
+            richSelect.render();
+        }
+
+        function toggleRichSelect() {
+            richSelect.toggle();
+            const log = document.getElementById('rich-select-log');
+            log.innerHTML += `Menu ${richSelect.isOpen ? 'opened' : 'closed'}<br>`;
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function setRandomValue() {
+            const options = ['online', 'idle', 'dnd', 'invisible'];
+            const random = options[Math.floor(Math.random() * options.length)];
+            richSelect.setValue(random);
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            initSimpleSelect();
+            initRichSelect();
+        });
+    </script>
+</body>
+</html>

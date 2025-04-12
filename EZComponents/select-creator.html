@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EZ Select Menu Creator Demo</title>
+    <link rel="stylesheet" href="style-shared.css">
+    <style>
+        body {
+            font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2c2f33;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .demo-section {
+            margin: 40px 0;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+        }
+
+        .demo-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .creator-container {
+            flex: 1;
+            min-width: 400px;
+            max-width: 600px;
+        }
+
+        .output-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .output-panel {
+            background-color: #36393f;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+        }
+
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .preview-container {
+            margin-top: 10px;
+            padding: 15px;
+            background-color: #2f3136;
+            border-radius: 4px;
+        }
+
+        #event-log {
+            background: #2f3136;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: monospace;
+            height: 200px;
+            overflow-y: auto;
+            font-size: 12px;
+            color: #b9bbbe;
+            white-space: pre-wrap;
+            margin-top: 10px;
+        }
+
+        #json-output {
+            background: #2f3136;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+            font-size: 12px;
+            color: #b9bbbe;
+            white-space: pre-wrap;
+            margin-top: 10px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            background-color: #5865f2;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .btn:hover {
+            background-color: #4752c4;
+        }
+
+        .btn.secondary {
+            background-color: #4f545c;
+        }
+
+        .btn.secondary:hover {
+            background-color: #686d73;
+        }
+
+        /* Getting Started Section */
+        .getting-started {
+            margin: 20px 0 40px;
+            background-color: #36393f;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .getting-started h3 {
+            margin-top: 0;
+            color: #ffffff;
+        }
+
+        .getting-started p {
+            margin-bottom: 15px;
+        }
+
+        /* Installation Section */
+        .installation {
+            margin-top: 15px;
+        }
+
+        .installation-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>EZ Select Menu Creator</h1>
+
+        <div class="getting-started">
+            <h3>Getting Started</h3>
+            <p>Follow these simple steps to add the EZComponents select menu creator to your project:</p>
+
+            <div class="installation">
+                <div class="installation-title">Add the scripts to your HTML:</div>
+                <div class="code-block">
+<pre><!-- Include the EZSelectMenu component (required) -->
+&lt;script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/selectMenu.js"&gt;&lt;/script&gt;
+
+<!-- Include the EZSelectMenuCreator component -->
+&lt;script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/selectMenuCreator.js"&gt;&lt;/script&gt;</pre>
+                </div>
+
+                <div class="installation-title">Initialize the select menu creator:</div>
+                <div class="code-block">
+<pre>// Create a select menu creator
+const selectCreator = new EZSelectMenuCreator(
+    document.getElementById('creator-container'),
+    {
+        initialData: {
+            placeholder: 'Select an option',
+            options: [
+                {
+                    label: 'Option One',
+                    value: 'option1',
+                    description: 'First option description',
+                    emoji: '1️⃣'
+                }
+            ]
+        }
+    }
+);
+
+// Initialize the creator
+selectCreator.init();
+
+// Listen for updates
+selectCreator.on('update', (data) => {
+    console.log('Select menu updated:', data);
+});</pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Interactive Creator</h2>
+
+            <div class="demo-flex">
+                <div class="creator-container" id="select-creator-container">
+                    <!-- Select creator will be inserted here -->
+                </div>
+
+                <div class="output-container">
+                    <div class="output-panel">
+                        <h3 class="panel-title">Event Log</h3>
+                        <div id="event-log">// Events will appear here</div>
+                    </div>
+
+                    <div class="output-panel">
+                        <h3 class="panel-title">JSON Output</h3>
+                        <div class="btn-row">
+                            <button id="export-json" class="btn">Export JSON</button>
+                            <button id="reset-creator" class="btn secondary">Reset Creator</button>
+                        </div>
+                        <div id="json-output">// JSON will appear here</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="output-panel" style="margin-top: 20px;">
+                <h3 class="panel-title">Implementation Code</h3>
+                <div class="code-block">
+                    <pre>
+// Initialize the Select Menu Creator
+const selectCreator = new EZSelectMenuCreator(
+    document.getElementById('creator-container'),
+    {
+        initialData: {
+            placeholder: 'Select an item',
+            options: [
+                {
+                    label: 'First Option',
+                    value: 'first',
+                    description: 'Description for first option',
+                    emoji: '1️⃣'
+                }
+            ]
+        }
+    }
+);
+
+// Initialize the creator
+selectCreator.init();
+
+// Listen for updates
+selectCreator.on('update', (changedData) => {
+    console.log('Select menu updated:', changedData);
+
+    // You can use the changed data to update your application
+    // or synchronize with other components
+});
+
+// Get the full data object
+const currentData = selectCreator.getData();
+
+// Set new data programmatically
+selectCreator.setData({
+    placeholder: 'Choose a role',
+    options: [
+        {
+            label: 'Admin',
+            value: 'admin',
+            description: 'Full access to all settings',
+            emoji: '👑'
+        },
+        {
+            label: 'Moderator',
+            value: 'mod',
+            description: 'Can manage users and content',
+            emoji: '🛡️'
+        }
+    ]
+});
+
+// Export to JSON (useful for saving to database)
+const jsonData = selectCreator.toJSON();
+
+// Create a working select menu from the creator data
+const selectMenu = new EZSelectMenu(
+    document.getElementById('select-container'),
+    selectCreator.getData()
+);
+selectMenu.render();
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load components -->
+    <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/selectMenu.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Botman64/EZComponents/components/selectMenuCreator.js"></script>
+
+    <script>
+        let selectCreator;
+        let livePreview;
+
+        // Initialize creator
+        function initCreator() {
+            // Initialize the select menu creator
+            selectCreator = new EZSelectMenuCreator(
+                document.getElementById('select-creator-container'),
+                {
+                    initialData: {
+                        placeholder: 'Select an item',
+                        options: [
+                            {
+                                label: 'First Option',
+                                value: 'first',
+                                description: 'This is the first option',
+                                emoji: '1️⃣'
+                            }
+                        ]
+                    }
+                }
+            );
+
+            selectCreator.init();
+
+            // Create live preview
+            updateLivePreview();
+
+            // Listen for updates
+            selectCreator.on('update', (data) => {
+                console.log('Select menu updated:', data);
+                const eventLog = document.getElementById('event-log');
+                eventLog.textContent += `\nUpdate: ${JSON.stringify(data, null, 2)}`;
+                eventLog.scrollTop = eventLog.scrollHeight;
+
+                // Update live preview
+                updateLivePreview();
+            });
+
+            // Set up export button
+            document.getElementById('export-json').addEventListener('click', () => {
+                const jsonOutput = document.getElementById('json-output');
+                const selectData = selectCreator.toJSON();
+                jsonOutput.textContent = JSON.stringify(selectData, null, 2);
+            });
+
+            // Set up reset button
+            document.getElementById('reset-creator').addEventListener('click', () => {
+                selectCreator.setData({
+                    placeholder: 'Select an item',
+                    options: [
+                        {
+                            label: 'Reset Option',
+                            value: 'reset',
+                            description: 'The creator has been reset',
+                            emoji: '🔄'
+                        }
+                    ]
+                });
+
+                const eventLog = document.getElementById('event-log');
+                eventLog.textContent += '\nCreator reset to default';
+                eventLog.scrollTop = eventLog.scrollHeight;
+
+                // Update JSON output
+                const jsonOutput = document.getElementById('json-output');
+                jsonOutput.textContent = JSON.stringify(selectCreator.toJSON(), null, 2);
+
+                // Update live preview
+                updateLivePreview();
+            });
+        }
+
+        // Update the live preview
+        function updateLivePreview() {
+            const previewContainer = document.getElementById('live-preview');
+            previewContainer.innerHTML = '';
+
+            if (livePreview) {
+                livePreview = null;
+            }
+
+            livePreview = new EZSelectMenu(
+                previewContainer,
+                selectCreator.getData()
+            );
+
+            livePreview.render();
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', initCreator);
+    </script>
+</body>
+</html>

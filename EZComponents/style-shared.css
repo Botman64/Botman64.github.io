@@ -89,3 +89,7 @@
     margin-right: 8px;
     color: #5865f2;
 }
+
+.code-preview {
+  overflow-x:scroll
+}

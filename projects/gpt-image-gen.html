@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Generate beautiful AI images using OpenAI's models. Create and edit images with advanced settings and customization options.">
+  <meta name="keywords" content="AI image generator, DALL-E, GPT image, image editing, OpenAI, artificial intelligence">
+  <meta name="author" content="Your Name">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://botman64.github.io/projects/gpt-image-gen">
+  <meta property="og:title" content="GPT Image Generator - Create AI Images">
+  <meta property="og:description" content="Generate beautiful AI images using OpenAI's models. Create and edit images with advanced settings and customization options.">
+  <meta property="og:image" content="https://botman64.github.io/images/gpt_imagen_preview.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://botman64.github.io/projects/gpt-image-gen">
+  <meta property="twitter:title" content="GPT Image Generator - Create AI Images">
+  <meta property="twitter:description" content="Generate beautiful AI images using OpenAI's models. Create and edit images with advanced settings and customization options.">
+  <meta property="twitter:image" content="https://botman64.github.io/images/gpt_imagen_preview.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <title>GPT Image Generator - Create AI Images</title>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --input-bg: #f5f5f5;
+      --border-color: #dddddd;
+      --accent-color: #4a90e2;
+      --accent-color-rgb: 74, 144, 226;
+      --slider-track: #d1d1d1;
+      --slider-thumb: #4a90e2;
+      --button-hover: #3a80d2;
+      --button-active: #2970c2;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #1a1a1a;
+      --text-color: #ffffff;
+      --input-bg: #2d2d2d;
+      --border-color: #404040;
+      --accent-color: #83b2da;
+      --accent-color-rgb: 131, 178, 218;
+      --slider-track: #505050;
+      --slider-thumb: #83b2da;
+      --button-hover: #73a2ca;
+      --button-active: #6392ba;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      max-width: 1600px;
+      margin: 0 auto;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 10px;
+      margin-bottom: 20px;
+      background-color: var(--input-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      border-radius: 5px;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .panel {
+      position: relative;
+      background-color: var(--bg-color);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+      padding: 20px;
+      width: 100%;
+      max-width: 1600px;
+      border: 1px solid var(--border-color);
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    select {
+      width: 100%;
+      padding: 8px;
+      background-color: var(--input-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      border-radius: 4px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    select:focus {
+      border-color: var(--accent-color);
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: var(--slider-track);
+      outline: none;
+      margin: 8px 0;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--slider-thumb);
+      cursor: pointer;
+      border: 2px solid var(--slider-thumb);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--slider-thumb);
+      cursor: pointer;
+      border: 2px solid var(--slider-thumb);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    #opacityValue {
+      display: inline-block;
+      min-width: 48px;
+      text-align: right;
+    }
+
+    #compressionValue {
+      margin-left: auto;
+    }
+
+    .compression-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .compression-wrapper {
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .compression-value {
+      position: absolute;
+      top: -5px;
+      right: 0;
+      font-size: 0.8rem;
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 20px 0;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: var(--button-hover);
+    }
+
+    button:active {
+      background-color: var(--button-active);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .image-container {
+      position: relative;
+      margin: 20px auto;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--input-bg);
+      border: 2px dashed var(--border-color);
+      overflow: hidden;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .loader {
+      width: 50px;
+      height: 50px;
+      border: 5px solid var(--border-color);
+      border-top: 5px solid var(--accent-color);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      display: none;
+    }
+
+    .loading .loader {
+      display: block;
+      animation: spin 1s linear infinite;
+    }
+
+    .container-error {
+      color: #ff4444;
+      text-align: center;
+      padding: 20px;
+      max-width: 80%;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      padding: 8px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      border: none;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+    }
+
+    .theme-toggle:hover {
+      background-color: var(--button-hover);
+    }
+
+    .error-message {
+      color: #ff4444;
+      background-color: rgba(255, 68, 68, 0.1);
+      padding: 10px;
+      border-radius: 4px;
+      margin: 10px 0;
+      display: none;
+    }
+
+    .mode-toggle {
+      display: flex;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      background-color: var(--input-bg);
+    }
+
+    .mode-btn {
+      flex: 1;
+      padding: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      color: var(--text-color);
+    }
+
+    .mode-btn.active {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    .image-upload-container {
+      margin-bottom: 20px;
+    }
+
+    .image-upload-area {
+      border: 2px dashed var(--border-color);
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      background-color: var(--input-bg);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-upload-area:hover {
+      background-color: var(--input-bg);
+      border-color: var(--accent-color);
+    }
+
+    .upload-instructions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-color);
+    }
+
+    .upload-instructions svg {
+      stroke: var(--accent-color);
+    }
+
+    .image-preview-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .image-preview {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .image-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-preview .remove-image {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.2s;
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .image-preview:hover .remove-image {
+      opacity: 1;
+    }
+
+    #editPrompt {
+      margin-top: 10px;
+    }
+
+    /* API Key Button */
+    .api-key-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 1001;
+      background: var(--accent-color);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 60% 60%;
+    }
+
+    .api-key-btn:hover {
+      background-color: var(--button-hover);
+    }
+
+    .modal {
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: var(--bg-color);
+      color: var(--text-color);
+      padding: 32px 24px 24px 24px;
+      border-radius: 12px;
+      min-width: 320px;
+      max-width: 90vw;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+      border: 1px solid var(--border-color);
+    }
+
+    .close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    #apiKeyInput {
+      width: 100%;
+      padding: 10px;
+      margin: 16px 0;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      background: var(--input-bg);
+      color: var(--text-color);
+      box-sizing: border-box;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    #apiKeyModal .modal-actions button {
+      padding: 8px 16px;
+      margin-right: 10px;
+    }
+
+    .api-key-status {
+      font-size: 0.95em;
+      color: var(--accent-color);
+      min-height: 1.2em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="panel">
+      <button id="manageApiKeyBtn" class="api-key-btn" title="Manage API Key">🔑</button>
+      <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+      <h1>GPT Image Generator</h1>
+      <textarea id="prompt" placeholder="Enter your prompt here"></textarea>
+
+      <div class="image-upload-container">
+        <div class="image-upload-area" id="dropArea">
+          <input type="file" id="imageUpload" accept="image/*" multiple hidden>
+          <div class="upload-instructions">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            <span>Add image(s) for editing (optional)</span>
+          </div>
+        </div>
+        <div class="image-preview-container" id="previewContainer"></div>
+      </div>
+
+      <div class="controls">
+        <label>Size:
+          <select id="size">
+            <option value="1024x1024">1024x1024 (Square)</option>
+            <option value="1024x1536">1024x1536 (Portrait)</option>
+            <option value="1536x1024">1536x1024 (Landscape)</option>
+          </select>
+        </label>
+
+        <label>Quality:
+          <select id="quality">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+
+        <label>Format:
+          <select id="format">
+            <option value="png">PNG</option>
+            <option value="jpeg">JPEG</option>
+            <option value="webp">WebP</option>
+          </select>
+        </label>
+
+        <label>Compression:
+          <div class="compression-wrapper">
+            <input type="range" id="compression" min="0" max="100" value="85">
+            <span id="compressionValue" class="compression-value">85%</span>
+          </div>
+        </label>
+
+        <label>Background:
+          <select id="background">
+            <option value="transparent">Transparent</option>
+            <option value="opaque">Opaque</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="apiKeyModal" class="modal" style="display:none;">
+        <div class="modal-content">
+          <span id="closeApiKeyModal" class="close">&times;</span>
+          <h2>Manage OpenAI API Key</h2>
+          <input type="password" id="apiKeyInput" placeholder="Enter your OpenAI API key" autocomplete="off" />
+          <div class="modal-actions">
+            <button id="saveApiKeyBtn">Save</button>
+            <button id="deleteApiKeyBtn">Delete</button>
+          </div>
+          <div id="apiKeyStatus" class="api-key-status"></div>
+        </div>
+      </div>
+
+      <div class="error-message" id="error"></div>
+      <button onclick="generateImage()" id="generateBtn">Generate</button>
+      <div id="output" class="image-container">
+
+      </div>
+    </div>
+  </div>
+  <script>
+    const config = {
+      "apiKey": ""
+    }
+    const theme = localStorage.getItem('theme') || 'light';
+    document.body.setAttribute('data-theme', theme);
+
+    function showError(message) {
+      const errorDiv = document.getElementById("error");
+      errorDiv.textContent = message;
+      errorDiv.style.display = "block";
+      setTimeout(() => {
+        errorDiv.style.display = "none";
+      }, 5000);
+    }
+
+    function showContainerError(message) {
+      const output = document.getElementById("output");
+      const errorDiv = document.createElement("div");
+      errorDiv.className = "container-error";
+      errorDiv.textContent = message;
+      output.innerHTML = "";
+      output.appendChild(errorDiv);
+    }
+
+    function toggleTheme() {
+      const currentTheme = document.body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    }
+
+    async function processImage(base64Data, format, compression, background) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+
+          if (background === 'opaque') {
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+          }
+
+          ctx.drawImage(img, 0, 0);
+
+          const quality = compression / 100;
+          canvas.toBlob((blob) => {
+            resolve(URL.createObjectURL(blob));
+          }, `image/${format}`, format === 'png' ? undefined : quality);
+        };
+
+        img.src = `data:image/png;base64,${base64Data}`;
+      });
+    }
+
+    function updateContainerSize() {
+      const size = document.getElementById("size").value;
+      const [width, height] = size.split('x').map(Number);
+      const container = document.getElementById("output");
+      const scaledWidth = width * 0.75;
+      const scaledHeight = height * 0.75;
+      const availableWidth = container.parentElement.offsetWidth - 60;
+      const fitScale = Math.min(1, availableWidth / scaledWidth);
+      container.style.width = `${Math.floor(scaledWidth * fitScale)}px`;
+      container.style.height = `${Math.floor(scaledHeight * fitScale)}px`;
+    }
+
+    document.getElementById("size").addEventListener("change", updateContainerSize);
+    window.addEventListener("resize", updateContainerSize);
+    document.addEventListener("DOMContentLoaded", updateContainerSize);
+
+    let uploadedImages = [];
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const dropArea = document.getElementById('dropArea');
+      const imageUpload = document.getElementById('imageUpload');
+      const previewContainer = document.getElementById('previewContainer');
+
+      if (dropArea && imageUpload && previewContainer) {
+        dropArea.addEventListener('click', () => {
+          imageUpload.click();
+        });
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+          dropArea.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+          dropArea.addEventListener(eventName, () => {
+            dropArea.style.borderColor = 'var(--accent-color)';
+          }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+          dropArea.addEventListener(eventName, () => {
+            dropArea.style.borderColor = 'var(--border-color)';
+          }, false);
+        });
+
+        dropArea.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+          const dt = e.dataTransfer;
+          const files = dt.files;
+          if (files.length > 0) handleFiles(files);
+        }
+
+        imageUpload.addEventListener('change', function () {
+          if (this.files.length > 0) handleFiles(this.files);
+        });
+
+        function handleFiles(files) {
+          Array.from(files).forEach(file => {
+            if (file.type.match('image.*')) {
+              const reader = new FileReader();
+
+              reader.onload = function (e) {
+                const imageData = e.target.result;
+                addImagePreview(imageData, file.name);
+              };
+
+              reader.readAsDataURL(file);
+            }
+          });
+        }
+
+        function addImagePreview(imageData, fileName) {
+          uploadedImages.push({
+            data: imageData,
+            name: fileName
+          });
+
+          const preview = document.createElement('div');
+          preview.className = 'image-preview';
+          const img = document.createElement('img');
+          img.src = imageData;
+          const removeBtn = document.createElement('button');
+          removeBtn.className = 'remove-image';
+          removeBtn.innerHTML = '×';
+          removeBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const index = uploadedImages.findIndex(img => img.data === imageData);
+            if (index > -1) uploadedImages.splice(index, 1);
+            preview.remove();
+          });
+
+          preview.appendChild(img);
+          preview.appendChild(removeBtn);
+          previewContainer.appendChild(preview);
+        }
+      }
+
+      const manageApiKeyBtn = document.getElementById('manageApiKeyBtn');
+      const apiKeyModal = document.getElementById('apiKeyModal');
+      const closeApiKeyModal = document.getElementById('closeApiKeyModal');
+      const apiKeyInput = document.getElementById('apiKeyInput');
+      const saveApiKeyBtn = document.getElementById('saveApiKeyBtn');
+      const deleteApiKeyBtn = document.getElementById('deleteApiKeyBtn');
+      const apiKeyStatus = document.getElementById('apiKeyStatus');
+
+      if (manageApiKeyBtn && apiKeyModal && closeApiKeyModal && apiKeyInput && saveApiKeyBtn && deleteApiKeyBtn && apiKeyStatus) {
+        manageApiKeyBtn.onclick = () => {
+          apiKeyModal.style.display = 'flex';
+          apiKeyInput.value = getStoredApiKey();
+          apiKeyStatus.textContent = '';
+        };
+        closeApiKeyModal.onclick = () => {
+          apiKeyModal.style.display = 'none';
+        };
+        saveApiKeyBtn.onclick = () => {
+          const key = apiKeyInput.value.trim();
+          if (key) {
+            setStoredApiKey(key);
+            apiKeyStatus.textContent = "API key saved!";
+            setTimeout(() => { apiKeyModal.style.display = 'none'; }, 800);
+          } else {
+            apiKeyStatus.textContent = "Please enter a valid key.";
+          }
+        };
+        deleteApiKeyBtn.onclick = () => {
+          deleteStoredApiKey();
+          apiKeyInput.value = '';
+          apiKeyStatus.textContent = "API key deleted.";
+        };
+        apiKeyModal.onclick = (e) => {
+          if (e.target === apiKeyModal) apiKeyModal.style.display = 'none';
+        };
+      }
+
+      // Add compression slider event listener
+      const compressionSlider = document.getElementById('compression');
+      const compressionValue = document.getElementById('compressionValue');
+
+      if (compressionSlider && compressionValue) {
+        compressionSlider.addEventListener('input', function () {
+          compressionValue.textContent = `${this.value}%`;
+        });
+      }
+    });
+
+    async function generateImage() {
+      const prompt = document.getElementById("prompt").value;
+      if (!prompt) {
+        showContainerError("Please enter a prompt");
+        return;
+      }
+
+      const apiKey = getStoredApiKey();
+      if (!apiKey) {
+        showContainerError("Please set your OpenAI API key (🔑 button top left)");
+        return;
+      }
+
+      const generateBtn = document.getElementById("generateBtn");
+      const output = document.getElementById("output");
+      const loader = document.createElement("div");
+      loader.className = "loader";
+      output.innerHTML = "";
+      output.appendChild(loader);
+      output.classList.add('loading');
+      generateBtn.disabled = true;
+
+      try {
+        let response;
+
+        if (uploadedImages.length > 0) {
+          const imageFile = dataURLtoFile(uploadedImages[0].data, uploadedImages[0].name || "image.png");
+          const formData = new FormData();
+          formData.append("model", "gpt-image-1");
+          formData.append("image", imageFile);
+          formData.append("prompt", prompt);
+          formData.append("size", document.getElementById("size").value);
+          formData.append("n", "1");
+
+          response = await fetch("https://api.openai.com/v1/images/edits", {
+            method: "POST",
+            headers: {
+              "Authorization": `Bearer ${apiKey}`
+            },
+            body: formData
+          });
+        } else {
+          response = await fetch("https://api.openai.com/v1/images/generations", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+              model: "gpt-image-1",
+              prompt,
+              size: document.getElementById("size").value,
+              background: document.getElementById("background").value,
+              quality: document.getElementById("quality").value,
+            })
+          });
+        }
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.error?.message || 'Failed to generate image');
+        }
+
+        const data = await response.json();
+        const base64Data = data.data[0].b64_json;
+
+        try {
+          const format = document.getElementById("format").value;
+          const compression = document.getElementById("compression").value;
+          const background = document.getElementById("background").value;
+          const processedImageUrl = await processImage(base64Data, format, compression, background);
+          const processedImg = document.createElement("img");
+
+          processedImg.onload = () => {
+            output.innerHTML = "";
+            output.appendChild(processedImg);
+            output.classList.remove('loading');
+          };
+
+          processedImg.onerror = () => {
+            showContainerError("Failed to load generated image");
+            output.classList.remove('loading');
+          };
+
+          processedImg.src = processedImageUrl;
+        } catch (error) {
+          showContainerError("Error processing image: " + error.message);
+          output.classList.remove('loading');
+        }
+      } catch (error) {
+        showContainerError(error.message);
+      } finally {
+        generateBtn.disabled = false;
+        output.classList.remove('loading');
+      }
+    }
+
+    function dataURLtoFile(dataurl, filename) {
+      const arr = dataurl.split(',');
+      const mimeMatch = arr[0].match(/:(.*?);/);
+      const mime = mimeMatch ? mimeMatch[1] : '';
+      const bstr = atob(arr[1]);
+      let n = bstr.length;
+      const u8arr = new Uint8Array(n);
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      return new File([u8arr], filename, { type: mime });
+    }
+
+    document.getElementById("compression").addEventListener("input", function (e) {
+      document.getElementById("compressionValue").textContent = `${e.target.value}%`;
+    });
+
+    function getStoredApiKey() {
+      const encrypted = localStorage.getItem('openai_api_key');
+      if (!encrypted) return '';
+      return atob(encrypted);
+    }
+
+    function setStoredApiKey(key) {
+      const encrypted = btoa(key);
+      localStorage.setItem('openai_api_key', encrypted);
+    }
+
+    function deleteStoredApiKey() {
+      localStorage.removeItem('openai_api_key');
+    }
+
+  </script>
+</body>
+
+</html>

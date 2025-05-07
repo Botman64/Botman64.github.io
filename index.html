@@ -1,410 +1,427 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Botman's GitHub Pages - Web Components & Resources</title>
-    <meta name="description" content="Discover EZComponents, a collection of easy-to-use Discord-style UI components, projects, and programming tutorials by Botman64.">
-    <meta name="keywords" content="web components, discord ui, UI components, JavaScript, HTML, CSS, programming tutorials">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Botman's GitHub Pages - Web Components & Resources</title>
+  <meta name="description"
+    content="Discover EZComponents, a collection of easy-to-use Discord-style UI components, projects, and programming tutorials by Botman64.">
+  <meta name="keywords"
+    content="web components, discord ui, UI components, JavaScript, HTML, CSS, programming tutorials">
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://botman64.github.io/">
-    <meta property="og:title" content="Botman's GitHub Pages - Web Components & Resources">
-    <meta property="og:description" content="Discover EZComponents, a collection of easy-to-use Discord-style UI components, projects, and programming tutorials.">
-    <meta property="og:image" content="https://botman64.github.io/images/default-preview.png">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://botman64.github.io/">
+  <meta property="og:title" content="Botman's GitHub Pages - Web Components & Resources">
+  <meta property="og:description"
+    content="Discover EZComponents, a collection of easy-to-use Discord-style UI components, projects, and programming tutorials.">
+  <meta property="og:image" content="https://botman64.github.io/images/default-preview.png">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://botman64.github.io/">
-    <meta property="twitter:title" content="Botman's GitHub Pages - Web Components & Resources">
-    <meta property="twitter:description" content="Discover EZComponents, a collection of easy-to-use Discord-style UI components, projects, and programming tutorials.">
-    <meta property="twitter:image" content="https://botman64.github.io/images/default-preview.png">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://botman64.github.io/">
+  <meta property="twitter:title" content="Botman's GitHub Pages - Web Components & Resources">
+  <meta property="twitter:description"
+    content="Discover EZComponents, a collection of easy-to-use Discord-style UI components, projects, and programming tutorials.">
+  <meta property="twitter:image" content="https://botman64.github.io/images/default-preview.png">
 
-    <style>
-        body {
-            font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #2c2f33;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+  <style>
+    body {
+      font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #2c2f33;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-        header {
-            background-color: #23272a;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
+    header {
+      background-color: #23272a;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
 
-        h1 {
-            margin: 0;
-            color: #ffffff;
-            font-size: 2.5rem;
-        }
+    h1 {
+      margin: 0;
+      color: #ffffff;
+      font-size: 2.5rem;
+    }
 
-        .subtitle {
-            color: #b9bbbe;
-            margin-top: 10px;
-            font-size: 1.2rem;
-        }
+    .subtitle {
+      color: #b9bbbe;
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
 
-        /* Navigation Tabs */
-        .nav-tabs {
-            display: flex;
-            justify-content: center;
-            background-color: #23272a;
-            padding: 0 20px;
-            overflow-x: auto;
-            border-bottom: 1px solid #36393f;
-        }
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      background-color: #23272a;
+      padding: 0 20px;
+      overflow-x: auto;
+      border-bottom: 1px solid #36393f;
+    }
 
-        .nav-tab {
-            padding: 15px 25px;
-            color: #b9bbbe;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.2s;
-            border-bottom: 3px solid transparent;
-            white-space: nowrap;
-        }
+    .nav-tab {
+      padding: 15px 25px;
+      color: #b9bbbe;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+    }
 
-        .nav-tab:hover {
-            color: #ffffff;
-            background-color: #2c2f33;
-        }
+    .nav-tab:hover {
+      color: #ffffff;
+      background-color: #2c2f33;
+    }
 
-        .nav-tab.active {
-            color: #ffffff;
-            border-bottom: 3px solid #5865F2;
-        }
+    .nav-tab.active {
+      color: #ffffff;
+      border-bottom: 3px solid #5865F2;
+    }
 
-        main {
-            flex: 1;
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-            box-sizing: border-box;
-        }
+    main {
+      flex: 1;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      box-sizing: border-box;
+    }
 
-        /* Welcome Section */
-        .welcome-section {
-            text-align: center;
-            padding: 60px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    /* Welcome Section */
+    .welcome-section {
+      text-align: center;
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
-        .welcome-title {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: #ffffff;
-        }
+    .welcome-title {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
 
-        .welcome-subtitle {
-            font-size: 1.5rem;
-            color: #b9bbbe;
-            margin-bottom: 40px;
-        }
+    .welcome-subtitle {
+      font-size: 1.5rem;
+      color: #b9bbbe;
+      margin-bottom: 40px;
+    }
 
-        .welcome-description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #dcddde;
-            margin-bottom: 40px;
-        }
+    .welcome-description {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #dcddde;
+      margin-bottom: 40px;
+    }
 
-        /* Content Section */
-        .content-section {
-            display: none;
-        }
+    /* Content Section */
+    .content-section {
+      display: none;
+    }
 
-        .content-section.active {
-            display: block;
-        }
+    .content-section.active {
+      display: block;
+    }
 
-        .section-title {
-            margin-bottom: 30px;
-            color: #ffffff;
-            font-size: 2rem;
-        }
+    .section-title {
+      margin-bottom: 30px;
+      color: #ffffff;
+      font-size: 2rem;
+    }
 
-        .section-description {
-            margin-bottom: 30px;
-            color: #dcddde;
-            line-height: 1.5;
-        }
+    .section-description {
+      margin-bottom: 30px;
+      color: #dcddde;
+      line-height: 1.5;
+    }
 
-        /* Component Grid */
-        .component-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
+    /* Component Grid */
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
 
-        .component-card {
-            background-color: #36393f;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    .component-card {
+      background-color: #36393f;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        .component-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
+    .component-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
 
-        .card-header {
-            background-color: #5865F2;
-            color: white;
-            padding: 15px;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
+    .card-header {
+      background-color: #5865F2;
+      color: white;
+      padding: 15px;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
 
-        .card-header.embed {
-            background-color: #ED4245;
-        }
+    .card-header.embed {
+      background-color: #ED4245;
+    }
 
-        .card-header.projects {
-            background-color: #57F287;
-        }
+    .card-header.projects {
+      background-color: #57F287;
+    }
 
-        .card-header.tutorials {
-            background-color: #FEE75C;
-            color: #23272a;
-        }
+    .card-header.tutorials {
+      background-color: #FEE75C;
+      color: #23272a;
+    }
 
-        .card-body {
-            padding: 20px;
-            color: #dcddde;
-        }
+    .card-body {
+      padding: 20px;
+      color: #dcddde;
+    }
 
-        .card-description {
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
+    .card-description {
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
 
-        .view-button {
-            display: inline-block;
-            background-color: #5865F2;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.2s;
-        }
+    .view-button {
+      display: inline-block;
+      background-color: #5865F2;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
 
-        .view-button:hover {
-            background-color: #4752c4;
-        }
+    .view-button:hover {
+      background-color: #4752c4;
+    }
 
-        footer {
-            background-color: #23272a;
-            padding: 20px;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #b9bbbe;
-            margin-top: auto;
-        }
+    footer {
+      background-color: #23272a;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #b9bbbe;
+      margin-top: auto;
+    }
 
-        .footer-link {
-            color: #5865F2;
-            text-decoration: none;
-        }
+    .footer-link {
+      color: #5865F2;
+      text-decoration: none;
+    }
 
-        .footer-link:hover {
-            text-decoration: underline;
-        }
-    </style>
+    .footer-link:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
+
 <body>
-    <header>
-        <h1>Botman's GitHub Pages</h1>
-        <div class="subtitle">Projects, Components, Tutorials & More</div>
-    </header>
+  <header>
+    <h1>Botman's GitHub Pages</h1>
+    <div class="subtitle">Projects, Components, Tutorials & More</div>
+  </header>
 
-    <div class="nav-tabs">
-        <div class="nav-tab" data-tab="welcome">Home</div>
-        <div class="nav-tab" data-tab="ezcomponents">EZ Components</div>
-        <div class="nav-tab" data-tab="projects">Projects</div>
-        <div class="nav-tab" data-tab="tutorials">Tutorials</div>
-    </div>
+  <div class="nav-tabs">
+    <div class="nav-tab" data-tab="welcome">Home</div>
+    <div class="nav-tab" data-tab="ezcomponents">EZ Components</div>
+    <div class="nav-tab" data-tab="projects">Projects</div>
+    <div class="nav-tab" data-tab="tutorials">Tutorials</div>
+  </div>
 
-    <main>
-        <!-- Welcome Section (Default) -->
-        <section id="welcome" class="content-section active">
-            <div class="welcome-section">
-                <h1 class="welcome-title">Welcome to Botman's <br> GitHub Pages</h1>
-                <p class="welcome-subtitle">Explore my projects, tutorials, and resources</p>
-                <p class="welcome-description">
-                    This site showcases my work in web development, programming projects,
-                    and educational content. Feel free to browse through the different
-                    sections using the navigation tabs above.
-                </p>
-                <div class="component-grid">
-                </div>
+  <main>
+    <!-- Welcome Section (Default) -->
+    <section id="welcome" class="content-section active">
+      <div class="welcome-section">
+        <h1 class="welcome-title">Welcome to Botman's <br> GitHub Pages</h1>
+        <p class="welcome-subtitle">Explore my projects, tutorials, and resources</p>
+        <p class="welcome-description">
+          This site showcases my work in web development, programming projects,
+          and educational content. Feel free to browse through the different
+          sections using the navigation tabs above.
+        </p>
+        <div class="component-grid">
+        </div>
+      </div>
+    </section>
+
+    <!-- EZ Components Section -->
+    <section id="ezcomponents" class="content-section">
+      <h2 class="section-title">EZ Components</h2>
+      <p class="section-description">
+        Simple, customizable web components for your Discord-inspired UIs.
+        These components are designed to be easy to use and customize.
+      </p>
+
+      <div class="component-grid">
+        <div class="component-card">
+          <div class="card-header">Button Components</div>
+          <div class="card-body">
+            <div class="card-description">
+              Create interactive buttons with various styles, emoji support,
+              and event handling. Includes a visual button creator tool.
             </div>
-        </section>
+            <a href="./EZComponents/button" class="view-button">View Demo</a>
+          </div>
+        </div>
 
-        <!-- EZ Components Section -->
-        <section id="ezcomponents" class="content-section">
-            <h2 class="section-title">EZ Components</h2>
-            <p class="section-description">
-                Simple, customizable web components for your Discord-inspired UIs.
-                These components are designed to be easy to use and customize.
-            </p>
-
-            <div class="component-grid">
-                <div class="component-card">
-                    <div class="card-header">Button Components</div>
-                    <div class="card-body">
-                        <div class="card-description">
-                            Create interactive buttons with various styles, emoji support,
-                            and event handling. Includes a visual button creator tool.
-                        </div>
-                        <a href="./EZComponents/button" class="view-button">View Demo</a>
-                    </div>
-                </div>
-
-                <div class="component-card">
-                    <div class="card-header embed">Embed Components</div>
-                    <div class="card-body">
-                        <div class="card-description">
-                            Create rich embed cards with customizable content, fields,
-                            colors, and more. Includes an interactive embed creator.
-                        </div>
-                        <a href="./EZComponents/embed" class="view-button">View Demo</a>
-                    </div>
-                </div>
-
-                <div class="component-card">
-                    <div class="card-header" style="background-color: #FEE75C; color: #23272a;">Select Menu</div>
-                    <div class="card-body">
-                        <div class="card-description">
-                            Create dropdown select menus with support for icons, descriptions, and
-                            complex options. Perfect for user selections and filters.
-                        </div>
-                        <a href="./EZComponents/select-menu" class="view-button">View Demo</a>
-                    </div>
-                </div>
-
-                <div class="component-card">
-                    <div class="card-header" style="background-color: #57F287;">Select Creator</div>
-                    <div class="card-body">
-                        <div class="card-description">
-                            Interactive tool to create and customize select menus. Export your creation
-                            as JSON to use directly in your applications.
-                        </div>
-                        <a href="./EZComponents/select-creator" class="view-button">View Demo</a>
-                    </div>
-                </div>
-
-                <div class="component-card">
-                    <div class="card-header" style="background-color: #EB459E;">Form Components</div>
-                    <div class="card-body">
-                        <div class="card-description">
-                            Build responsive forms with validation, conditional fields, and various
-                            field types. Perfect for user input and data collection.
-                        </div>
-                        <a href="./EZComponents/form" class="view-button">View Demo</a>
-                    </div>
-                </div>
-
-                <div class="component-card">
-                    <div class="card-header" style="background-color: #7289DA;">Style Editor</div>
-                    <div class="card-body">
-                        <div class="card-description">
-                            Experiment with styling your components in real-time. Test different CSS properties
-                            and see the code needed to implement them.
-                        </div>
-                        <a href="./EZComponents/style-editor" class="view-button">View Demo</a>
-                    </div>
-                </div>
-                
-                <!-- New Navbar Component Card -->
-                <div class="component-card">
-                    <div class="card-header" style="background-color: #FF73FA;">Navigation Bars</div>
-                    <div class="card-body">
-                        <div class="card-description">
-                            Create horizontal and vertical navigation bars with customizable styles,
-                            icons, and event handling. Perfect for modern web applications.
-                        </div>
-                        <a href="./EZComponents/navbar" class="view-button">View Demo</a>
-                    </div>
-                </div>
+        <div class="component-card">
+          <div class="card-header embed">Embed Components</div>
+          <div class="card-body">
+            <div class="card-description">
+              Create rich embed cards with customizable content, fields,
+              colors, and more. Includes an interactive embed creator.
             </div>
-        </section>
+            <a href="./EZComponents/embed" class="view-button">View Demo</a>
+          </div>
+        </div>
 
-        <!-- Projects Section -->
-        <section id="projects" class="content-section">
-            <h2 class="section-title">Projects</h2>
-            <p class="section-description">
-                Explore my personal and professional programming projects.
-            </p>
-
-            <div class="component-grid">
+        <div class="component-card">
+          <div class="card-header" style="background-color: #FEE75C; color: #23272a;">Select Menu</div>
+          <div class="card-body">
+            <div class="card-description">
+              Create dropdown select menus with support for icons, descriptions, and
+              complex options. Perfect for user selections and filters.
             </div>
-        </section>
+            <a href="./EZComponents/select-menu" class="view-button">View Demo</a>
+          </div>
+        </div>
 
-        <!-- Tutorials Section -->
-        <section id="tutorials" class="content-section">
-            <h2 class="section-title">Tutorials</h2>
-            <p class="section-description">
-                Helpful guides and tutorials on various programming topics.
-            </p>
-
-            <div class="component-grid">
+        <div class="component-card">
+          <div class="card-header" style="background-color: #57F287;">Select Creator</div>
+          <div class="card-body">
+            <div class="card-description">
+              Interactive tool to create and customize select menus. Export your creation
+              as JSON to use directly in your applications.
             </div>
-        </section>
+            <a href="./EZComponents/select-creator" class="view-button">View Demo</a>
+          </div>
+        </div>
 
-    </main>
+        <div class="component-card">
+          <div class="card-header" style="background-color: #EB459E;">Form Components</div>
+          <div class="card-body">
+            <div class="card-description">
+              Build responsive forms with validation, conditional fields, and various
+              field types. Perfect for user input and data collection.
+            </div>
+            <a href="./EZComponents/form" class="view-button">View Demo</a>
+          </div>
+        </div>
 
-    <footer>
-        <p>Created by <a href="https://github.com/Botman64" class="footer-link">Botman64</a> |
-        <a href="https://github.com/Botman64" class="footer-link">View on GitHub</a></p>
-    </footer>
+        <div class="component-card">
+          <div class="card-header" style="background-color: #7289DA;">Style Editor</div>
+          <div class="card-body">
+            <div class="card-description">
+              Experiment with styling your components in real-time. Test different CSS properties
+              and see the code needed to implement them.
+            </div>
+            <a href="./EZComponents/style-editor" class="view-button">View Demo</a>
+          </div>
+        </div>
 
-    <script>
-        // Tab navigation functionality
-        const tabs = document.querySelectorAll('.nav-tab');
-        const contentSections = document.querySelectorAll('.content-section');
+        <!-- New Navbar Component Card -->
+        <div class="component-card">
+          <div class="card-header" style="background-color: #FF73FA;">Navigation Bars</div>
+          <div class="card-body">
+            <div class="card-description">
+              Create horizontal and vertical navigation bars with customizable styles,
+              icons, and event handling. Perfect for modern web applications.
+            </div>
+            <a href="./EZComponents/navbar" class="view-button">View Demo</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        function activateTab(tabId) {
-            // Deactivate all tabs and sections
-            tabs.forEach(tab => tab.classList.remove('active'));
-            contentSections.forEach(section => section.classList.remove('active'));
+    <!-- Projects Section -->
+    <section id="projects" class="content-section">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-description">
+        Explore my personal and professional programming projects.
+      </p>
 
-            // Activate the selected tab and section
-            const selectedTab = document.querySelector(`.nav-tab[data-tab="${tabId}"]`);
-            if (selectedTab) selectedTab.classList.add('active');
+      <div class="component-grid">
+        <div class="component-card">
+          <div class="card-header" style="background-color: #7289DA;">GPT Image Gen</div>
+          <div class="card-body">
+            <div class="card-description">
+              A simple web application that generates images using OpenAI's GPT Image API.
+              Create stunning visuals with just a few clicks.
+            </div>
+            <a href="./projects/gpt-image-gen" class="view-button">View Demo</a>
+        </div>
+      </div>
+    </section>
 
-            const selectedSection = document.getElementById(tabId);
-            if (selectedSection) selectedSection.classList.add('active');
-        }
+    <!-- Tutorials Section -->
+    <section id="tutorials" class="content-section">
+      <h2 class="section-title">Tutorials</h2>
+      <p class="section-description">
+        Helpful guides and tutorials on various programming topics.
+      </p>
 
-        // Add click event listeners to tabs
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const tabId = tab.getAttribute('data-tab');
-                activateTab(tabId);
-            });
-        });
+      <div class="component-grid">
+      </div>
+    </section>
 
-        // Check for URL hash and activate corresponding tab
-        window.addEventListener('load', () => {
-            const hash = window.location.hash.substring(1);
-            if (hash && document.getElementById(hash)) {
-                activateTab(hash);
-            }
-        });
-    </script>
+  </main>
+
+  <footer>
+    <p>Created by <a href="https://github.com/Botman64" class="footer-link">Botman64</a> |
+      <a href="https://github.com/Botman64" class="footer-link">View on GitHub</a>
+    </p>
+  </footer>
+
+  <script>
+    // Tab navigation functionality
+    const tabs = document.querySelectorAll('.nav-tab');
+    const contentSections = document.querySelectorAll('.content-section');
+
+    function activateTab(tabId) {
+      // Deactivate all tabs and sections
+      tabs.forEach(tab => tab.classList.remove('active'));
+      contentSections.forEach(section => section.classList.remove('active'));
+
+      // Activate the selected tab and section
+      const selectedTab = document.querySelector(`.nav-tab[data-tab="${tabId}"]`);
+      if (selectedTab) selectedTab.classList.add('active');
+
+      const selectedSection = document.getElementById(tabId);
+      if (selectedSection) selectedSection.classList.add('active');
+    }
+
+    // Add click event listeners to tabs
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabId = tab.getAttribute('data-tab');
+        activateTab(tabId);
+      });
+    });
+
+    // Check for URL hash and activate corresponding tab
+    window.addEventListener('load', () => {
+      const hash = window.location.hash.substring(1);
+      if (hash && document.getElementById(hash)) {
+        activateTab(hash);
+      }
+    });
+  </script>
 </body>
+
 </html>
